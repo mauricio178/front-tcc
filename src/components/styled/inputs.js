@@ -1,44 +1,65 @@
 import styled from 'styled-components'
 
 export const Title = styled.h1`
-  color: #1C1C1C;
+  margin-top: 1em;
+  color: ;
   font-family: Calibri;
+  font-size: 35px
 `;
 
 export const Button = styled.button`
 cursor: pointer;
-background: green;
 font-size: 16px;
-font-family: Calibri;
-border-radius: 3px;
+font-family: arial;
+border-radius: 5px;
 color: black;
 border: 2px solid;
 margin: 0 1em;
+margin-top: 4em;
+margin-bottom: 4em;
+margin-left: px;
 padding: 0.25em 1em;
 transition: 0.5s all ease-out;
 &:hover {
-  background-color: #00FF7F;
+  background-color: gray;
   color: black;
 }
 `;
 
-export const Container = styled.div`
-  background-color: #808080;
-  margin-left: 25rem;
-  margin-right: 25rem;
-  border-radius: 15px;
+export const ContainerForm = styled.div`
+background-image: linear-gradient(to bottom, gray, white);
+margin-top: 2em;
+margin-left: 33em;
+margin-right: 33em;
+border: 1px solid;
+border-radius: 10px;
+`;
 
+
+export const Container = styled.div`
+  background-image: linear-gradient(to bottom, #696969, white);
+  position: absolute;
 `;
 
 export const InputText = styled.input`
-  margin-bottom: 30px;
-  margin-right: 12px;
-  color: 	black;
-  padding: 0.25rem 0.5rem
-  ;  
+
+font-family: arial;
+border-radius: 10px;
+color: black;
+border: 1px solid;
+margin: 0 1em;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 0.5em 1em;
+
 
 `;
 
-export const ErrorMesage  = styled.span`
+export const ErrorMesage = styled.span`
   color: #f00;
+`;
+
+export const Header = styled.header`
+  margin-top: 1em;
+  display: start;
 `;
