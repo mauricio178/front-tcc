@@ -1,11 +1,9 @@
 import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import { Scope } from '@unform/core'
+import * as Yup from 'yup'
 import './App.css'
-
-// IMPORTAR YUP E DEFINIR OS SCHEEMAS <<< 
-
-import Input from './components/input';
+import { Title, InputText, Container, Button } from './components/styled/inputs'
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -15,30 +13,45 @@ const initialData = {
 }
 
 
-export default function SignIn() {
+export default function App() {
 
   const formRef = useRef(null)
 
-  function handleSubmit(data, { reset }) {
-    if (data.email === "")
-    formRef.current.setFieldError('email', 'Email Obrigatório')
-    // { email: 'test@example.com', password: '123456' }
+  async function handleSubmit(data, { reset }) {
+    try {
+
+      const schema = Yup.object().shape({
+        email: Yup.string().email().required(),
+        senha: Yup.string().min(6).required(),
+      });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+    } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errorMessages = {
+            email: 'Email Obrigatório!'
+          };
+
+          err.inner.forEach(error => {
+            errorMessages[error.path] = error.message;
+          })
+          formRef.current.setErrors(errorMessages);
+    }   
     reset();
+
   }
-  return (
-    <div className="App">
-      <h1>SIGN IN</h1>
-      <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-      <Input placeholder="Email" type="email" name="email"/>
-
-      <Scope path="address"/>
-        <Input placeholder="Quadra" name="street"/>
-        <Input placeholder="Cidade" name="city"/>
-        <Input placeholder="Estado" name="state"/>
-        <Input placeholder="Número da Casa" name="number"/>
-
-        <button type="submit">Sign in</button>
-      </Form>
-    </div>
-  );
 }
+  return (
+    <Container className="App">
+      <Title>SIGN IN</Title>
+      <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
+      <InputText placeholder="Email" type="email" name="email"/>
+      <InputText placeholder="Senha" type="password" name="password"/>
+
+        <Button type="submit">Sign in</Button>
+      </Form>
+    </Container>
+  );
+  }

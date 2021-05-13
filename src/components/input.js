@@ -1,6 +1,7 @@
 import React, { useEffect, useRef }  from 'react'
 import { useField } from '@unform/core'
-
+import { Container, InputText, ErrorMesage } from './styled/inputs'
+ 
 export default function Input({ name, ...rest }) {
     const inputRef = useRef(null)
     const { fieldName, defaultValue, registerField, error } = useField(name)
@@ -13,9 +14,9 @@ export default function Input({ name, ...rest }) {
         })
     }, [inputRef, registerField]);
     return (
-        <div>
-            <input ref={inputRef} defaultValue={defaultValue} {...rest} />
-            { error && <span style={{color: '#f00'}}>{error}</span>}
-        </div>
+        <Container>
+            <InputText ref={inputRef} defaultValue={defaultValue} {...rest} />
+            { error && <ErrorMesage style={{color: '#f00'}}>{error}</ErrorMesage>}
+        </Container>
     );
 }
