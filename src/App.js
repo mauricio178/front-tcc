@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Form } from '@unform/web'
-import { Scope } from '@unform/core'
 import * as Yup from 'yup'
 import './App.css'
 import { Title, InputText, Container, Button } from './components/styled/inputs'
@@ -45,6 +44,7 @@ export default function App() {
 }
   return (
     <Container className="App">
+      <img src="./man.jpg" alt="imagem"></img>
       <Title>SIGN IN</Title>
       <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
       <InputText placeholder="Email" type="email" name="email"/>
