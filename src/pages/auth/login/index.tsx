@@ -2,7 +2,8 @@ import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import './App.css'
-import { Button, Container, ContainerForm, Header, InputText, Title } from '../../../components/input/styled'
+import { Button, Container, ContainerForm, Header, InputText, Title } from './styled'
+import Input from '../../../components/input'
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -49,8 +50,8 @@ export default function Login() {
       <ContainerForm>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
         <Title>Sign In</Title>
-        <InputText placeholder="Email" type="email" name="email"/>
-        <InputText placeholder="Senha" type="password" name="password"/>
+        <Input placeholder="Email" type="email" name="email"/>
+        <Input placeholder="Senha" type="password" name="password"/>
         <Button type="submit">Entrar</Button>
         </Form>
       </ContainerForm>
