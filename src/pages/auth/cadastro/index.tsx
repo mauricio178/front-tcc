@@ -8,8 +8,7 @@ import { Title,
   Button, 
   Header, 
   ContainerForm,
- } from './components/styled/inputs'
-
+ } from '../../../components/styled/inputs'
 const initialData = {
   email: 'mauricio@mauricio',
   address: {
@@ -18,7 +17,7 @@ const initialData = {
 }
 
 
-export default function App() {
+export default function Login() {
 
   const formRef = useRef(null)
 
