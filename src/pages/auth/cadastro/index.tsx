@@ -2,13 +2,7 @@ import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import './App.css'
-import { Title, 
-  InputText, 
-  Container, 
-  Button, 
-  Header, 
-  ContainerForm,
- } from '../../../components/styled/inputs'
+import { Button, Container, ContainerForm, Header, InputText, Title } from '../../../components/input/styled'
 const initialData = {
   email: 'mauricio@mauricio',
   address: {
