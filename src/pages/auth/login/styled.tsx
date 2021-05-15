@@ -27,12 +27,14 @@ transition: 0.5s all ease-out;
 `;
 
 export const ContainerForm = styled.div`
-background-image: linear-gradient(to bottom, gray, white);
-margin-top: 2em;
-margin-left: 33em;
-margin-right: 33em;
-border: 1px solid;
-border-radius: 10px;
+  background-image: linear-gradient(to bottom, gray, white);
+  margin-top: 2em;
+  margin-left: 33em;
+  margin-right: 33em;
+  border: 1px solid;
+  border-radius: 10px;
+  flex: 1;
+  display: flex;  
 `;
 
 

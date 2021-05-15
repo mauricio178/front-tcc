@@ -3,6 +3,7 @@ import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, Container, ContainerForm, Header, Title } from './styled'
 import Input from '../../../components/input'
+import { FormHandles } from '@unform/core'
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -11,12 +12,16 @@ const initialData = {
   }
 }
 
+interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
+  setErrors(error: any): void
+}
+
 
 export default function Login() {
 
-  const formRef = useRef(null);
+  const formRef = useRef({} as IFormRefInterface);
 
-  async function handleSubmit(data, { reset }) {
+  async function handleSubmit(data: any, { reset }: any) {
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email().required(),
@@ -32,7 +37,7 @@ export default function Login() {
           };
 
           err.inner.forEach(error => {
-            errorMessages[(error: any).path] = error.message;
+            // errorMessages[(error: any).path] = error.message;
           })
           formRef.current.setErrors(errorMessages);
     }   

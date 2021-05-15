@@ -7,8 +7,7 @@ export const ErrorMesage = styled.span`
 `;
 
 export const Container = styled.div`
-  background-image: linear-gradient(to bottom, #696969, white);
-  position: absolute;
+  background-image: linear-gradient(to bottom, #696969, white);  
 `;
 
 export const InputText = styled.input`

@@ -3,6 +3,7 @@ import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, Container, ContainerForm, Header, Title } from './styled'
 import Input from '../../../components/input'
+import { FormHandles } from '@unform/core'
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -11,12 +12,15 @@ const initialData = {
   }
 }
 
+interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
+  setErrors(error: any): void
+}
 
 export default function Login() {
 
-  const formRef = useRef(null);
+  const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
-  async function handleSubmit(data, { reset }) {
+  async function handleSubmit(data: any, { reset }: any) {
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email().required(),
@@ -25,20 +29,20 @@ export default function Login() {
       await schema.validate(data, {
         abortEarly: false,
       });
+
     } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const errorMessages = {
-            email: 'Email Obrigatório!'
-          };
+      if (err instanceof Yup.ValidationError) {
+        const errorMessages = [] as string [];
+        
+        err.inner.forEach(error => {
+          errorMessages.push(error.message);
+        })
+        formRef.current.setErrors(errorMessages);
+      }   
 
-          err.inner.forEach(error => {
-            errorMessages[(error: any).path] = error.message;
-          })
-          formRef.current.setErrors(errorMessages);
-    }   
-    console.log(data);
-    reset();
+      console.log(data);
 
+      reset();
   }
 }
   return (
