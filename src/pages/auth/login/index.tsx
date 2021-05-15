@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import './App.css'
-import { Button, Container, ContainerForm, Header, InputText, Title } from './styled'
+import { Button, Container, ContainerForm, Header, Title } from './styled'
 import Input from '../../../components/input'
 
 const initialData = {
@@ -15,7 +14,7 @@ const initialData = {
 
 export default function Login() {
 
-  const formRef = useRef(null)
+  const formRef = useRef(null);
 
   async function handleSubmit(data, { reset }) {
     try {
@@ -33,7 +32,7 @@ export default function Login() {
           };
 
           err.inner.forEach(error => {
-            errorMessages[error.path] = error.message;
+            errorMessages[(error: any).path] = error.message;
           })
           formRef.current.setErrors(errorMessages);
     }   

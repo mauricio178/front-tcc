@@ -1,30 +1,25 @@
 Arguments: 
-  /Users/barreira/.nvm/versions/node/v12.22.1/bin/node /Users/barreira/.nvm/versions/node/v12.22.1/bin/yarn add @styles/styled-components -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
 
 PATH: 
-  /Users/barreira/.rvm/gems/ruby-2.6.3/bin:/Users/barreira/.rvm/gems/ruby-2.6.3@global/bin:/Users/barreira/.rvm/rubies/ruby-2.6.3/bin:/Users/barreira/.asdf/shims:/usr/local/opt/asdf/bin:/Users/barreira/.nvm/versions/node/v12.22.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/barreira/.rvm/gems/ruby-2.6.3/bin:/Users/barreira/.rvm/gems/ruby-2.6.3@global/bin:/Users/barreira/.rvm/rubies/ruby-2.6.3/bin:/Users/barreira/.nvm/versions/node/v12.22.1/bin:/Users/barreira/Library/Android/sdk/emulator:/Users/barreira/Library/Android/sdk/tools:/Users/barreira/Library/Android/sdk/tools/bin:/Users/barreira/Library/Android/sdk/platform-tools:/Users/barreira/.rvm/bin:/Users/barreira/.rvm/bin:/Users/barreira/Library/Android/sdk/emulator:/Users/barreira/Library/Android/sdk/tools:/Users/barreira/Library/Android/sdk/tools/bin:/Users/barreira/Library/Android/sdk/platform-tools
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mauri\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Python38\Scripts;C:\Python38;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\mauri\AppData\Local\Microsoft\WindowsApps;C:\Users\mauri\AppData\Roaming\npm;C:\Users\mauri\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mauri\AppData\Local\Yarn\bin;C:\Users\mauri\AppData\Roaming\nvm;C:\Program Files\nodejs
 
 Yarn version: 
-  1.22.10
+  1.22.5
 
 Node version: 
-  12.22.1
+  15.0.1
 
 Platform: 
-  darwin x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@styles%2fstyled-components: Not found
-      at Request.params.callback [as _callback] (/Users/barreira/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/Users/barreira/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (events.js:314:20)
-      at Request.<anonymous> (/Users/barreira/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (events.js:314:20)
-      at IncomingMessage.<anonymous> (/Users/barreira/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (events.js:420:28)
-      at IncomingMessage.emit (events.js:326:22)
-      at endReadableNT (_stream_readable.js:1241:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  SyntaxError: C:\Users\mauri\package.json: Unexpected token y in JSON at position 0
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
