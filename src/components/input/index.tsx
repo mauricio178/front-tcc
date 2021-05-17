@@ -13,7 +13,7 @@ export default function Input({ name, ...rest }:any) {
             ref: inputRef.current,
             path: 'value'
         })
-    }, [inputRef, registerField]);
+    }, [fieldName, inputRef, registerField]);
     return (
         <Container>
             <InputText ref={inputRef} defaultValue={defaultValue} {...rest} />

@@ -1,25 +1,28 @@
 import styled from 'styled-components'
 
-
-
 export const ErrorMesage = styled.span`
   color: #f00;
 `;
 
 export const Container = styled.div`
-  background-image: linear-gradient(to bottom, #696969, white);  
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  
+  
 `;
 
 export const InputText = styled.input`
+    outline: none !important;
+    border: 0px solid;
+    box-shadow: 0 0 10px #000000;  
 
-font-family: arial;
-border-radius: 10px;
-color: black;
-border: 1px solid;
-margin: 0 1em;
-margin-top: 1em;
-margin-bottom: 1em;
-padding: 0.5em 1em;
+  color: black;
+  padding: 10px;
+  margin: 1em;
+  border-radius: 10px;
+  font-size: 17px;
+  font-family: calibri
 
 
 `;
