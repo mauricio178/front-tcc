@@ -20,18 +20,24 @@ color: #2F4F4F;
 
 export const Title2 = styled.h1`
 margin-left: 1em;
-margin-top: 4em;
+font-size: 27px;
+margin-top: 1em;
 flex-direction: column;
 font-family: Century Gothic;
 color: #D3D3D3;
 `;
 
-export const Legend = styled.h4`
+export const Lbl = styled.p`
+  margin: 3em;
+  font-family: Century Gothic;
+  font-size: 10px;
+`;
+
+export const Legend = styled.p`
 margin: 2em;
 margin-top: 5px;
 font-family: Century Gothic;
 color: 	#B0C4DE;
-
 `;
 
 export const FooterLegend = styled.h6`
@@ -45,16 +51,16 @@ font-size: 10px;
 export const Button = styled.button`
 border: 1px solid #25692A;
 color: white;
-border-radius: 4px;
+border-radius: 3px;
 cursor:pointer;
 font-family: Century Gothic;
 font-weight: bold;
-font-size: 13px;
+font-size: 12px;
 background-color: #DC143C;
-padding: 10px 112px;
-margin-left: 60px;
-margin-top: 2em;
-margin-bottom: 2em;
+padding: 5px 50px;
+margin-left: 42px;
+margin-top: 1em;
+margin-bottom: 1em;
 `;
 
 export const Button2 = styled.button`
@@ -64,39 +70,36 @@ export const Button2 = styled.button`
   background-color: Transparent;
   border: 1px solid 	#B0C4DE;
   color: 	#B0C4DE;
-  margin-left: 27em;
+  margin-left: 2em;
 `;
 
 export const Container = styled.div`
-background-image: linear-gradient(to right, white, #008080);
+background-image: linear-gradient(to right, #008080, white);
 width: 100vw;
 height: 100vh;
 display: flex;
-flex-direction: row;
 justify-content: center;
 align-items: center;
+border: 1px solid ;
 `;
 
 export const ContainerFormRigth = styled.div`
-width: 30em;
-height: 33em;
+width: 28em;
+height: 32em;
 float: left;
 align-items: center;
-background-image: linear-gradient(180deg, white, #D3D3D3);
+background-image: url("img1-login.png");
 box-shadow: 0 0 3px #000000;
 `;
 
 export const ContainerFormLeft = styled.div`
-
-border-width:2px;
-width: 30em;
-height: 33em;
+width: 28em;
+height: 32em;
 left:0px;
-background-image: url("img1-login.png");
+background-image: linear-gradient(180deg, white, #D3D3D3);
 float: left;
 align-items: center;
 box-shadow: 0 0 3px #000000;
-opacity: 0.9;
 `;
 
 export const ContainerForms = styled.div`
@@ -107,12 +110,11 @@ margin: 2em;
 export const ContainerForm = styled.div`
 border: 1px solid;
 border-radius: 3px;
-margin: 1em 3em;
+margin: 2em 7em;
 align-items: center;
 justify-content: center;
 flex-direction: column;
 background-color: white
-
 `;
 
 

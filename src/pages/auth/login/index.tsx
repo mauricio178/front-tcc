@@ -1,9 +1,10 @@
 import React, { useRef, } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Button, Container, ContainerForms, ContainerForm, ContainerFormLeft, ContainerFormRigth, Legend, Title2, Img, Button2 } from './styled'
+import { Button, Container, Title, ContainerForms, ContainerForm, ContainerFormLeft, ContainerFormRigth, Legend, Title2, Button2, Img, Lbl } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
+import { Link } from 'react-router-dom';
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -46,13 +47,29 @@ export default function Login() {
     }
   }
   return (
-    <Container className="App">
+    <Container className="App"> 
       <ContainerForms>
-        <ContainerFormLeft background-image="./img1-login.png">
-          <Title2>
+        <ContainerFormLeft >
+        <Img><img src="./man.png" alt="imagem"></img></Img>
+        
+          <ContainerForm>
+            <Title>Sign In</Title>
+            <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
+              <Input placeholder="E-mail" type="email" name="email"/>
+              <Input placeholder="Senha" type="password" name="password" />
+              <Button type="submit">Log In</Button>
+            </Form>
+            <Lbl>
+            <p>Não é registrado? <Link to="/cadastro">Registrar-se</Link></p>
+            </Lbl>
+            
+          </ContainerForm>
+        </ContainerFormLeft>
+
+        <ContainerFormRigth background-image="./img1-login.png">
+        <Title2>
             Bem-Vindo ao <strong>Manager!</strong>
           </Title2>
-
           <Legend>
             <p>___________________________________________________</p>
             <p>Assuma o controle de seus projetos, organizando tarefas e gerenciando recursos.</p>
@@ -63,22 +80,9 @@ export default function Login() {
           </Legend>
           <Button2 type="submit">
             Ler Mais...
-          </Button2>
-
-        </ContainerFormLeft>
-
-        <ContainerFormRigth>
-          <Img><img src="./man.png" alt="imagem"></img></Img>
-          <ContainerForm>
-            <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-              <Input placeholder="E-mail" type="email" name="email" />
-              <Input placeholder="Senha" type="password" name="password" />
-              <Button type="submit">Log In</Button>
-              
-            </Form>
-
-          </ContainerForm>
+          </Button2>     
         </ContainerFormRigth>
+
       </ContainerForms>
     </Container>
   );

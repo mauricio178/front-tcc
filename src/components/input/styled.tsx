@@ -6,8 +6,10 @@ export const ErrorMesage = styled.span`
 
 export const Container = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
-  padding: 8px;
+  padding: 7px;
+  margin: 3px 7px;
 `;
 
 export const InputText = styled.input`
@@ -15,11 +17,11 @@ export const InputText = styled.input`
   border: 0px solid;
   box-shadow: 0 0 3px #000000;  
   color: 	#363636;
-  padding: 10px;
-  margin-left: 3em;
-  margin-right: 3em;
-  margin-top: 1em;
-  border-radius: 5px;
-  font-size: 17px;
+  padding: 2px;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 0.1em;
+  border-radius: 3px;
+  font-size: 12px;
   font-family: Century Gothic;
 `;

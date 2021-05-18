@@ -17,7 +17,7 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 
-export default function Login() {
+export default function PreRegister() {
 
   const formRef = useRef({} as IFormRefInterface);
 
