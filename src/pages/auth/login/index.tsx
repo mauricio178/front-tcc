@@ -1,7 +1,7 @@
 import React, { useRef, } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { BoxForm, Button, Container, ContainerForm, ContainerFormLeft, ContainerFormRigth, Legend, Title, Title2, FooterLegend } from './styled'
+import { Button, Container, ContainerForms, ContainerForm, ContainerFormLeft, ContainerFormRigth, Legend, Title2, Img, Button2 } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 
@@ -47,32 +47,39 @@ export default function Login() {
   }
   return (
     <Container className="App">
-      <ContainerForm>
-        <ContainerFormLeft>
+      <ContainerForms>
+        <ContainerFormLeft background-image="./img1-login.png">
           <Title2>
-            Bem-Vindo!
+            Bem-Vindo ao <strong>Manager!</strong>
           </Title2>
-          <img src="./man.png" alt="imagem"></img>
+
           <Legend>
-            <p>Gerencie seus projetos com facilidade, praticidade e eficiência!</p>
+            <p>___________________________________________________</p>
+            <p>Assuma o controle de seus projetos, organizando tarefas e gerenciando recursos.</p>
+            <p>Pensado principalmente para empresas que procuram uma maneira simples de gerenciar seus
+            projetos baseado nas premissas do PMBOK (6ª Ed.)
+            </p>
+            <p>___________________________________________________</p>
           </Legend>
-          <FooterLegend>
-            Copy Rigth ManagerG® Company - 2021
-          </FooterLegend>
+          <Button2 type="submit">
+            Ler Mais...
+          </Button2>
+
         </ContainerFormLeft>
 
         <ContainerFormRigth>
-          <Title>Sign In</Title>
-          <BoxForm>
+          <Img><img src="./man.png" alt="imagem"></img></Img>
+          <ContainerForm>
             <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
               <Input placeholder="E-mail" type="email" name="email" />
               <Input placeholder="Senha" type="password" name="password" />
               <Button type="submit">Log In</Button>
+              
             </Form>
-          </BoxForm>
-        </ContainerFormRigth>
-      </ContainerForm>
 
+          </ContainerForm>
+        </ContainerFormRigth>
+      </ContainerForms>
     </Container>
   );
 }
