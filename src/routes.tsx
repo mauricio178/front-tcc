@@ -13,7 +13,6 @@ function Routes(){
               <Route path="/" exact component={Login} />
               <Route path="/cadastro" exact component={Register} />
               <Route path="/pre-cadastro" exact component={PreRegister} />
-
             </Switch>
         </BrowserRouter>
     );

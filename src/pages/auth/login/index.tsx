@@ -60,7 +60,9 @@ export default function Login() {
               <Button type="submit">Log In</Button>
             </Form>
             <Lbl>
-            <p>Não é registrado? <Link to="/cadastro">Registrar-se</Link></p>
+            <p>Não é registrado?
+               <Link to="/cadastro">Cadastre-se</Link></p>
+               <Link to="/pre-cadastro">Estou Pré-Cadastrado</Link>
             </Lbl>
             
           </ContainerForm>
