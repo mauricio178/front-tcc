@@ -18,20 +18,6 @@ font-family: Century Gothic;
 color: #2F4F4F;
 `;
 
-export const Lbl = styled.p`
-  margin: 3em;
-  font-family: Century Gothic;
-  font-size: 13px;
-`;
-
-export const FooterLegend = styled.h6`
-font-family: Century Gothic;
-margin: 13em;
-margin-top: 8em;
-color: white;
-font-size: 10px;
-`;
-
 export const Button = styled.button`
 border: 1px solid #25692A;
 color: white;
