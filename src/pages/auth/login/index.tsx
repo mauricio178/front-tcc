@@ -5,6 +5,7 @@ import { Button, Container, Title, ContainerForms, ContainerForm, ContainerFormL
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { Link } from 'react-router-dom';
+import { useLoader } from '../../../hooks/LoaderProvider'
 
 const initialData = {
   email: 'mauricio@mauricio',
@@ -18,7 +19,7 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 export default function Login() {
-
+  // const { toggleLoading } = useLoader()
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
   async function handleSubmit(data: any, { reset }: any) {
