@@ -52,6 +52,7 @@ export default function Login() {
     }
 
     try {
+      
       const response = await api.post("users/acess", data)
       console.log(data)
       handleGoToPrincipal()
