@@ -1,36 +1,37 @@
 import styled from 'styled-components'
 
+export const Link = styled.button`
+  border: 1px solid;
+`;
+
 export const Img = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 margin-top: 1em;
-
-`;
-
-export const Title = styled.h1`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-font-family: Century Gothic;
-color: #2F4F4F;
 `;
 
 export const Lbl = styled.p`
-  margin: 3em;
+  margin: 1em 5em;
   font-family: Century Gothic;
-  font-size: 13px;
+  font-size: 10px;
 `;
 
-export const FooterLegend = styled.h6`
+export const Title = styled.h1`
+margin-left: 65px;
 font-family: Century Gothic;
-margin: 13em;
-margin-top: 8em;
-color: white;
-font-size: 10px;
+color: #2F4F4F;
+font-size: 20px;
 `;
+
+export const Legend = styled.p`
+margin: 2em;
+margin-top: 5px;
+font-family: Century Gothic;
+color: 	#B0C4DE;
+`;
+
 
 export const Button = styled.button`
 border: 1px solid #25692A;
@@ -41,31 +42,26 @@ font-family: Century Gothic;
 font-weight: bold;
 font-size: 12px;
 background-color: 	#FF4500;
-padding: 5px 62px;
-margin-left: 31px;
+padding: 5px 48px;
+margin-left: 79px;
 margin-top: 1.5em;
-margin-bottom: 1em;
+margin-bottom: 2px;
 `;
 
 export const Button2 = styled.button`
-  padding: 1px;
-  cursor:pointer; 
+  padding: 5px;
   font-family:Century Gothic;
-  font-size: 13px;
-  border: 1px solid #008080;
-  border-radius: 5px;
   font-weight:bold;
   background-color: Transparent;
-  color: 	#008080;
-  margin-left: 56px;
-  margin-top: 10px;
-
+  border: 1px solid 	#B0C4DE;
+  color: 	#B0C4DE;
+  margin-left: 2em;
+    
 `;
 
 export const ContainerForm = styled.div`
-margin: 2em 7em;
+margin: 2em 5em;
 `;
-
 
 
 export const ErrorMesage = styled.span`

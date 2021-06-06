@@ -2,17 +2,27 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Login from './pages/auth/login';
-import PreRegister from './pages/auth/pre-cadastro';
-import Register from './pages/auth/cadastro';
+import FirstAcess from './pages/auth/acesso';
+import TelaPrincipal from './principal';
+import Listagem from './principal/listagem';
+import Repositorio from './principal/repositorio';
+import Registro from './pages/auth/registro';
+import Cadastro from './principal/cadastro';
+import TelaPrincipalUser from './principal copy';
 
 function Routes(){
     return (
         <BrowserRouter>
             <Switch>
-
               <Route path="/" exact component={Login} />
-              <Route path="/cadastro" exact component={Register} />
-              <Route path="/pre-cadastro" exact component={PreRegister} />
+              <Route path="/cadastro" exact component={Cadastro} />
+              <Route path="/principal copy" exact component={TelaPrincipalUser} />
+              <Route path="/listagem" exact component={Listagem} />
+              <Route path="/acesso" exact component={FirstAcess} />
+              <Route path="/registro" exact component={Registro} />
+              <Route path="/principal" exact component={TelaPrincipal} />
+              <Route path="/repositorio" exact component={Repositorio} />
+
             </Switch>
         </BrowserRouter>
     );

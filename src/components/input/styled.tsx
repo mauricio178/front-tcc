@@ -17,10 +17,8 @@ export const InputText = styled.input`
   border: 0px solid;
   box-shadow: 0 0 3px #000000;  
   color: 	#363636;
-  padding: 2px;
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-top: 0.1em;
+  padding: 5px 20px;
+  margin-top: 1em;
   border-radius: 3px;
   font-size: 12px;
   font-family: Century Gothic;

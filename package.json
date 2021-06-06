@@ -4,14 +4,18 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@syncfusion/ej2-react-buttons": "^19.1.63",
+    "@syncfusion/ej2-react-navigations": "^19.1.66",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@typescript-eslint/typescript-estree": "^4.15.2",
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.0",
@@ -43,7 +47,9 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9",
     "typescript": "^4.2.4"
