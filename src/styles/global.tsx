@@ -9,13 +9,14 @@ export default createGlobalStyle`
         outline: 0;
         box-sizing: 0;
         text-decoration: none;
+        font-family: 'Roboto', sans-serif;
     }
 
     #root{
         position:relative;
         min-height: 100vh;
         /* height: 100%; */
-        /* min-width: 100vw; */
+        max-width: 960px;
     }
 
     html, body {

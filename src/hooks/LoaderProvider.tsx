@@ -13,7 +13,7 @@ const LoaderProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const toggleLoading = useCallback(() => {
-    setLoading(prevData => !prevData);
+    setLoading(prevData => !prevData);    
   }, []);
 
   return (

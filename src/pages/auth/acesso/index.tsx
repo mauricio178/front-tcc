@@ -11,7 +11,7 @@ import { useLoader } from '../../../hooks/LoaderProvider'
 
 
 const initialData = {
-  email: 'mauricio@dev',
+  email: "mau.ricio4@hotmail.com",
   address: {
     city: '',
   }

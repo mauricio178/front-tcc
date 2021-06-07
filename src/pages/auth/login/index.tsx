@@ -7,12 +7,12 @@ import { FormHandles } from '@unform/core'
 import { useHistory } from 'react-router-dom';
 import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { api } from '../../../services/api'
+import { useLoader } from '../../../hooks/LoaderProvider'
+import { useAuth } from '../../../hooks/AuthProvider'
 
 const initialData = {
-  email: 'mauricio@dev',
-  address: {
-    city: '',
-  }
+  email: "mau.ricio4@hotmail.com",
+  password: "12312342224"
 }
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
@@ -20,8 +20,8 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 export default function Login() {
-
   const history = useHistory()
+  const { login } = useAuth()
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
@@ -29,42 +29,35 @@ export default function Login() {
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email().required(),
-        password: Yup.string().min(6).required(),
+        password: Yup.string().required().min(8),
       });
       await schema.validate(data, {
         abortEarly: false,
       });
-
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
-        const errorMessages = {
-          email: 'Email Obrigatório!',
-          password: 'Senha Obrigatória',
-        };
+        let errorMessages = {}
 
-        err.inner.forEach(error => {
-        //  
-        })
+        err.inner.forEach(error => errorMessages = {
+          ...errorMessages,
+          [`${err.path}`]: err.message
+        });
         formRef.current.setErrors(errorMessages);
       }
 
-      console.log(data);
     }
 
-    try {
-      
-      const response = await api.post("users/acess", data)
-      console.log(data)
-      handleGoToPrincipal()
+    try {      
+      login(data)    
+      handleGoToHome()
     } catch (error) {
-      throw new Error(`Houve um erro ao fazer login, ${error.message}`);
-      
     }
-      
+
+
   }
 
-  const handleGoToPrincipal = useCallback(() => {
-    history.push('../principal')
+  const handleGoToHome = useCallback(() => {
+    history.push('/')
   }, [history])
 
   const handleGoToAcess = useCallback(() => {

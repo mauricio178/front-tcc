@@ -1,39 +1,41 @@
 import React, { useCallback, useRef, } from 'react'
-import { Container, NavRight, NavLeft, NavCenter, Nav, Lbl, Button, Lbl2} from './styled'
-import Menu from '../navbar'
-import { useHistory } from 'react-router-dom'
-import NavBar from '../navbar'
+import { Container } from './styled'
+import { FiMenu, FiUser, FiLogOut } from 'react-icons/fi';
+import { useAuth } from '../../hooks/AuthProvider'
+import { useHistory } from 'react-router';
 
-interface HeaderInterface{
-  children: React.ReactNode;
-  titlePage: string;
-  
+interface IHeader{
+  setRenderAside(data: any): void
 }
 
-
-export const Header = () => {
-
+export const Header = ({ setRenderAside }: IHeader) => {
   const history = useHistory()
+  const { data: { user }, logout } = useAuth()
 
-  const handleLogOut = useCallback(() => {
-    history.push('/')
-  }, [history])
+  const handleLogout = useCallback(() => {
+    const confirmLogout =  logout()
+    if(confirmLogout){
+      history.push('/login')
+    }
+  }, [])
+
+  const handleToggleAside = useCallback(() => {
+    setRenderAside((prevData: boolean) => !prevData)    
+  }, [])
 
   return (
     <Container>
-      <Nav>
-        <NavLeft>
-          <Lbl>Manager G</Lbl>
-        </NavLeft>
-
-        <NavCenter>
-         <Lbl2>AQUI</Lbl2>
-        </NavCenter>
-  
-        <NavRight>
-          <Button onClick={handleLogOut}>Log Out</Button>
-        </NavRight>
-      </Nav>
+      <div>
+        <button type='button' onClick={handleToggleAside} >
+          <FiMenu size={16} />
+        </button>
+      </div>
+      <div>
+        <FiUser size={18} /> Bem vindo(a), {user.name} 
+        <button type="button" onClick={handleLogout}>
+          <FiLogOut size={16} />
+        </button>
+      </div>
     </Container>
   )
 }
