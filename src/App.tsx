@@ -5,10 +5,10 @@ import GlobalStyle from './styles/global'
 
 const App: React.FC = () => {
   return (
-    <>
+    <AppProvider>
       <Routes />
       <GlobalStyle />
-    </>
+    </AppProvider>
   );
 }
 export default App;

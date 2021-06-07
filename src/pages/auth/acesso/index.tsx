@@ -7,6 +7,7 @@ import { FormHandles } from '@unform/core'
 import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { useHistory } from 'react-router-dom'
 import { api } from '../../../services/api'
+import { useLoader } from '../../../hooks/LoaderProvider'
 
 
 const initialData = {
@@ -22,7 +23,7 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 
 
 
-interface IAxiosError{
+interface IAxiosError {
   response: {
     data: {
       message: string
@@ -32,77 +33,81 @@ interface IAxiosError{
 
 export default function FirstAcess() {
 
+  const { toggleLoading } = useLoader()
+
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
   const history = useHistory()
 
   const handleGoToLogin = useCallback(() => {
-    history.push('/')
+    history.push('/login')
   }, [history])
 
-  const handleGoToRegister = useCallback(() => {
-    history.push('/registro')
-  }, [history])
-
-  const handleGoToPrincipalUser = useCallback(() => {
-    history.push('../principal copy')
+  const handleGoToRegister = useCallback((email: string) => {
+    history.push('/registro', {email})
   }, [history])
 
   async function handleSubmit(data: any, { reset }: any) {
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email().required(),
-        codAcess: Yup.string().required()
       });
       await schema.validate(data, {
         abortEarly: false,
       });
     } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          let errorMessages = {}
+      if (err instanceof Yup.ValidationError) {
+        let errorMessages = {}
 
-          err.inner.forEach(error => errorMessages = {
-              ...errorMessages,
-              [`${err.path}`] : err.message
-          });
-          formRef.current.setErrors(errorMessages);
+        err.inner.forEach(error => errorMessages = {
+          ...errorMessages,
+          [`${err.path}`]: err.message
+        });
+        formRef.current.setErrors(errorMessages);
+      }
+
     }
-    
-  }
+
+    toggleLoading()
 
     api.post("users/access", data)
       .then(res => {
-        handleGoToLogin()      
+        handleGoToLogin()
       })
-      .catch((err: IAxiosError) => {        
+      .catch((err: IAxiosError) => {
         const { message } = err.response.data
-          
+        console.log(message)
         // eslint-disable-next-line eqeqeq
-        if (message == "Acesso Autorizado, complete o seu registro para continuar!"){
+        if (message == "Usuário não cadastrado, complete teu registro para continuar!") {
           alert(`${message}, verifique seu email com seu código de acesso.`)
-          
+          handleGoToRegister(String(data.email))
 
         } else {
-          alert('Código de Acesso Incorreto.')
-          handleGoToRegister()      
+          alert(message)
+          reset()
+
         }
+      }).finally(() => {
+        toggleLoading()
       })
+
+
   }
 
 
   return (
     <AuthDefaultBackground>
-        <Img><img src="./man.png" alt="imagem"></img></Img>
-          <ContainerForm>
-            <Title>Primeiro Acesso</Title>
-            <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-              <Input placeholder="E-mail" type="email" name="email" />
-              <Input placeholder="Código de Acesso" type="text" name="codAcess" />
-              <Button type="submit">Entrar 
+      <Img><img src="./man.png" alt="imagem"></img></Img>
+      <ContainerForm>
+        <Title>Primeiro Acesso</Title>
+        <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
+          <Input placeholder="E-mail" type="email" name="email" />
+
+          <Button type="submit">Entrar
               </Button>
-            </Form>
-          </ContainerForm>
+        </Form>
+      </ContainerForm>
 
     </AuthDefaultBackground>
   );
-  }
+}

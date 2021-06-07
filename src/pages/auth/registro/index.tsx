@@ -1,26 +1,38 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, ContainerForm, ContainerFormLeft, Title, Img, InputSelect } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { AuthDefaultBackground } from '../../../components/auth/bg'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useLoader } from '../../../hooks/LoaderProvider'
+import { api } from '../../../services/api'
 
-
-
-const initialData = {
-  email: 'mauricio@dev',
-  address: {
-    city: '',
-  }
-}
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
 }
 
-export default function Registro() {
+interface ILocation {
+  email: string
+}
+
+interface IAxiosError {
+  response: {
+    data: {
+      message: string
+    }
+  }
+}
+
+export default function Registro(props: any) {
+  
+  const [initialData, setInicialData] = useState({}) 
+
+  const location = useLocation()
+
+  const { toggleLoading } = useLoader()
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
@@ -45,17 +57,37 @@ export default function Registro() {
           })
           formRef.current.setErrors(errorMessages);
     }   
-    console.log(data);
-    reset();
 
+    toggleLoading()
+
+    api.post("users/register", data)
+      .then(res => {
+        handleGoToLogin()
+      })
+      .catch((err: IAxiosError) => {
+        const { message } = err.response.data
+        alert(message)  
+      }).finally(() => {
+        toggleLoading()
+      })
+    
     }
   }
 
   const history = useHistory()
 
-  const handleGoToPrincipalUser = useCallback(() => {
-    history.push('../principal copy')
+  const handleGoToLogin = useCallback(() => {
+    history.push('/')
   }, [history])
+
+  useEffect(() => {
+    console.log(props)
+    console.log(location)
+
+    const { email } = location.state as ILocation
+
+    setInicialData({email})
+  }, [props])
 
   return (
     <AuthDefaultBackground>
@@ -65,6 +97,7 @@ export default function Registro() {
           <ContainerForm>
             <Title>Cadastro Pessoal</Title>
             <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
+              <Input placeholder="E-mail" type="email" name="email" disabled/>
               <Input placeholder="Nome" type="text" name="name" />
               <Input 
                 type="tel" 
@@ -74,7 +107,7 @@ export default function Registro() {
                 pattern="[0-9]{2}[0-9]{5}[0-9]{4}" />
               <Input placeholder="CPF" type="number" name="cpf" />
               <InputSelect placeholder="Data de Nascimento" type="date" name="birth"></InputSelect>
-              <Button type="submit" onClick={handleGoToPrincipalUser}> Enviar </Button>
+              <Button type="submit"> Enviar </Button>
               
             </Form>
           </ContainerForm>

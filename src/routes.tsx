@@ -14,11 +14,11 @@ function Routes(){
     return (
         <BrowserRouter>
             <Switch>
-              <Route path="/" exact component={Login} />
+              <Route path="/" exact component={FirstAcess} />
+              <Route path="/login" exact component={Login} />
               <Route path="/cadastro" exact component={Cadastro} />
               <Route path="/principal copy" exact component={TelaPrincipalUser} />
               <Route path="/listagem" exact component={Listagem} />
-              <Route path="/acesso" exact component={FirstAcess} />
               <Route path="/registro" exact component={Registro} />
               <Route path="/principal" exact component={TelaPrincipal} />
               <Route path="/repositorio" exact component={Repositorio} />
