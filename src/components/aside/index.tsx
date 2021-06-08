@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, } from 'react'
 import { Container } from './styled'
-import { FiHome } from 'react-icons/fi';
+import { FiFile, FiHome, FiUser } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
+import AsideItem from '../AsideItem';
 
 interface IAside{
   renderAside: boolean
@@ -18,18 +19,25 @@ export const Aside = ({ renderAside }: IAside) => {
       <header>
         <img src="./man.png" alt="imagem"/>
       </header>
-      <div>
-        <FiHome />
-        <h3> Home </h3>
-      </div>
-      <div>
-        <FiHome />
-        <h3> Repositórios </h3>
-      </div>
-      <div>
-        <FiHome />
-        <h3> Equipe </h3>
-      </div>
+
+      <AsideItem 
+        icon={<FiHome />}
+        path="/"
+        label="Home"
+      />
+      
+      <AsideItem 
+        icon={<FiFile />}
+        path="/login"
+        label="Repositórios"
+      />
+      
+      <AsideItem 
+        icon={<FiUser />}
+        path="/"
+        label="Equipe"
+      />
+      
     </Container>
   )
 }

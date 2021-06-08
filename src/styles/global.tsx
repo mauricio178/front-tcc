@@ -23,4 +23,23 @@ export default createGlobalStyle`
         width: 100%;
         height: 100%;
     }
+
+    a:link {
+        color:#fff;
+    }
+
+    /* visited link */
+    a:visited {
+        color:#fff;
+    }
+
+    /* mouse over link */
+    a:hover {
+        color:#fff;
+    }
+
+    /* selected link */
+    a:active {
+        color:#fff;
+    }
 `

@@ -4,6 +4,7 @@ import { Aside } from '../components/aside';
 import { Header } from '../components/header';
 import { HomeContainer } from '../components/home/HomeContainer';
 import FirstAcess from '../pages/auth/acesso';
+import Login from '../pages/auth/login';
 
 function HomeRoutes(){
     const [ renderAside, setRenderAside ] = useState(true)
@@ -18,6 +19,7 @@ function HomeRoutes(){
 
                 {/* TODO, Maurício - Adicionar rotas autenticadas aqui */}
                 <Route path="/" exact component={FirstAcess} />
+                <Route path="/login" exact component={Login} />
 
               </Switch>
             </div>

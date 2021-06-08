@@ -12,7 +12,7 @@
       background-color: #fff;
     }
 
-    > div {
+    > a {
 
       padding: 16px ; 
       display: flex;
