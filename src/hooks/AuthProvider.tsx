@@ -47,6 +47,13 @@ const AuthProvider: React.FC = ({ children }) => {
   const [ data, setData ] = useState<IAuthState>({} as IAuthState)
 
   useEffect(() => {
+    const { token } = data
+    if(token){
+      api.defaults.headers.authorization = `Bearer ${token}`;
+    }
+  },[data])
+
+  useEffect(() => {
     const user = localStorage.getItem('@GP:user')
     const token = localStorage.getItem('@GP:token')
 
