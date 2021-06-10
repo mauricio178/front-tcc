@@ -9,7 +9,9 @@ interface IHeader{
 }
 
 export const Header = ({ setRenderAside }: IHeader) => {
+
   const history = useHistory()
+
   const { data: { user }, logout } = useAuth()
 
   const handleLogout = useCallback(() => {

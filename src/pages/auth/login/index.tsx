@@ -1,18 +1,19 @@
-import React, { useCallback, useRef, } from 'react'
+import React, { useCallback, useEffect, useRef, useState, } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, Title, ContainerForm, Img, Button2 } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { api } from '../../../services/api'
 import { useLoader } from '../../../hooks/LoaderProvider'
 import { useAuth } from '../../../hooks/AuthProvider'
 
-const initialData = {
-  email: "mau.ricio4@hotmail.com",
-  password: "12312342224"
+
+
+interface ILocation {
+  email: string
 }
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
@@ -20,7 +21,13 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 export default function Login() {
+
+  const [initialData, setInicialData] = useState({}) 
+
+  const location = useLocation()
+
   const history = useHistory()
+  
   const { login } = useAuth()
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
@@ -49,20 +56,25 @@ export default function Login() {
 
     try {      
       login(data)    
-      handleGoToHome()
+      handleGoToDashboard()
     } catch (error) {
     }
 
 
   }
 
-  const handleGoToHome = useCallback(() => {
-    history.push('/')
+  const handleGoToDashboard = useCallback(() => {
+    history.push('/dashboard')
   }, [history])
 
-  const handleGoToAcess = useCallback(() => {
-    history.push('/acesso')
-  }, [history])
+  useEffect(() => {
+    console.log()
+    console.log(location)
+
+    const { email } = location.state as ILocation
+
+    setInicialData({email})
+  }, [])
 
 
 
@@ -76,7 +88,6 @@ export default function Login() {
           <Input placeholder="E-mail" type="email" name="email"/>
           <Input placeholder="Senha" type="password" name="password" />
           <Button type="submit">Log In</Button>
-          <Button2 type="button" onClick={handleGoToAcess}>Primeiro acesso</Button2>
         </Form>
       </ContainerForm>
     </AuthDefaultBackground>

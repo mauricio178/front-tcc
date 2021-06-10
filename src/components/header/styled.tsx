@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  border-left: solid 1px #555;
-  padding: 24px 48px 24px 12px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #555;
-  background-color: #fff;
+  background: transparent;
   max-width: 80vw;
 
   div {
@@ -20,8 +18,10 @@ export const Container = styled.div`
     }
 
     button:hover {
-      opacity: .5;
-      transition: opacity .3s;
+      opacity: .9;
+      transition: opacity 3s;
+      background: red;
+      color: white;
     }
     button {
 

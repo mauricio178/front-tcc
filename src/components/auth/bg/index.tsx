@@ -11,14 +11,13 @@ function AuthDefaultBackground({ children, isLogin }: AuthDefaultBackgroundInter
   return (
     <Container className="App"> 
       <ContainerForms>
-
         <ContainerFormLeft >
           {children}
         </ContainerFormLeft>
 
         <ContainerFormRigth background-image="./img1-login.png">
         <Title2>
-            Bem-Vindo {isLogin && "de volta"} ao <strong>Manager!</strong>
+            Bem-Vindo {isLogin && "de volta"} ao Manager G!
           </Title2>
           <Legend>
             <p>___________________________________________________</p>

@@ -22,19 +22,19 @@ export const Aside = ({ renderAside }: IAside) => {
 
       <AsideItem 
         icon={<FiHome />}
-        path="/"
+        path="/dashboard"
         label="Home"
       />
       
       <AsideItem 
         icon={<FiFile />}
-        path="/login"
-        label="Repositórios"
+        path="/repositorio"
+        label="Repositório"
       />
       
       <AsideItem 
         icon={<FiUser />}
-        path="/"
+        path="/listagem"
         label="Equipe"
       />
       

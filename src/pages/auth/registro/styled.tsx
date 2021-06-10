@@ -46,13 +46,6 @@ export const InputSelect = styled.input`
 `;
 
 export const ContainerFormLeft = styled.div`
-width: 28em;
-height: 32em;
-left:0px;
-
-float: left;
-align-items: center;
-box-shadow: 0 0 3px #000000;
 `;
 
 export const ContainerForm = styled.div`

@@ -3,18 +3,16 @@
   export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    color: #fff;
     background-color: #555;
 
     header {
-      padding: 16px ;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       background-color: #fff;
     }
 
     > a {
 
-      padding: 16px ; 
+      padding: 15px ; 
       display: flex;
       align-items: center;
       flex-direction: row;

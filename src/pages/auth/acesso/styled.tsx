@@ -50,7 +50,7 @@ margin-bottom: 2px;
 
 export const Button2 = styled.button`
   padding: 5px;
-  font-family:Century Gothic;
+  font-family: Century Gothic;
   font-weight:bold;
   background-color: Transparent;
   border: 1px solid 	#B0C4DE;
@@ -60,7 +60,7 @@ export const Button2 = styled.button`
 `;
 
 export const ContainerForm = styled.div`
-margin: 2em 5em;
+  margin: 2em 5em;
 `;
 
 

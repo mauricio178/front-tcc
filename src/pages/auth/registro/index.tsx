@@ -39,30 +39,24 @@ export default function Registro(props: any) {
   async function handleSubmit(data: any, { reset }: any) {
     try {
       const schema = Yup.object().shape({
-        name: Yup.string().min(10).required(),
-        phone: Yup.string().min(9).max(11).required(),
-        cpf: Yup.string().min(11).required(),
-        birth: Yup.date().required(),
+        email: Yup.string().email().required(),
+        name: Yup.string().required(),
+        acess_code: Yup.string().required(),
+        password: Yup.string().required(),  
       });
+      console.log("Init validate")
+
       await schema.validate(data, {
         abortEarly: false,
       });
-    } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const errorMessages = {
-          };
 
-          err.inner.forEach(error => {
-            // errorMessages[(error: any).path] = error.message;
-          })
-          formRef.current.setErrors(errorMessages);
-    }   
+      console.log("End Validate")
 
-    toggleLoading()
+      toggleLoading()
 
     api.post("users/register", data)
       .then(res => {
-        handleGoToLogin()
+        handleGoToLogin(String(data.email))
       })
       .catch((err: IAxiosError) => {
         const { message } = err.response.data
@@ -70,14 +64,31 @@ export default function Registro(props: any) {
       }).finally(() => {
         toggleLoading()
       })
+      
+    } catch (err) {
+
+      console.log(err.message)
+
+      if (err instanceof Yup.ValidationError) {
+        let errorMessages = {}
+
+        err.inner.forEach(error => errorMessages = {
+          ...errorMessages,
+          [`${err.path}`]: err.message
+        });
+        formRef.current.setErrors(errorMessages);
+      }
+      console.log(data)
+
+    
     
     }
   }
 
   const history = useHistory()
 
-  const handleGoToLogin = useCallback(() => {
-    history.push('/')
+  const handleGoToLogin = useCallback((email: string) => {
+    history.push('/login', {email})
   }, [history])
 
   useEffect(() => {
@@ -99,16 +110,9 @@ export default function Registro(props: any) {
             <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
               <Input placeholder="E-mail" type="email" name="email" disabled/>
               <Input placeholder="Nome" type="text" name="name" />
-              <Input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                placeholder="Telefone" 
-                pattern="[0-9]{2}[0-9]{5}[0-9]{4}" />
-              <Input placeholder="CPF" type="number" name="cpf" />
-              <InputSelect placeholder="Data de Nascimento" type="date" name="birth"></InputSelect>
+              <Input placeholder="Password" type="password" name="password" />
+              <Input placeholder="Código de Acesso" type="text" name="acess_code" />
               <Button type="submit"> Enviar </Button>
-              
             </Form>
           </ContainerForm>
         </ContainerFormLeft>

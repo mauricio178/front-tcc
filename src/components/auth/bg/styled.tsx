@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 
 export const Img = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
 margin-top: 1em;
 
 `;
@@ -40,14 +36,6 @@ font-family: Century Gothic;
 color: 	#B0C4DE;
 `;
 
-export const FooterLegend = styled.h6`
-font-family: Century Gothic;
-margin: 13em;
-margin-top: 8em;
-color: white;
-font-size: 10px;
-`;
-
 export const Button = styled.button`
 border: 1px solid #25692A;
 color: white;
@@ -81,7 +69,6 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-border: 1px solid ;
 `;
 
 export const ContainerFormRigth = styled.div`
@@ -90,35 +77,23 @@ height: 32em;
 float: left;
 align-items: center;
 background-image: url("img1-login.png");
-box-shadow: 0 0 3px #000000;
+border-radius: 0px 15px 15px 0px;
 `;
 
 export const ContainerFormLeft = styled.div`
 width: 28em;
 height: 32em;
-left:0px;
 background-image: linear-gradient(180deg, white, #A9A9A9);
 float: left;
 align-items: center;
-box-shadow: 0 0 3px #000000;
+border-radius: 15px 0px 0px 15px;
+
 `;
 
 export const ContainerForms = styled.div`
-background: #00000;
+background: transparent;
 margin: 2em;
 `;
-
-export const ContainerForm = styled.div`
-border: 1px solid #C0C0C0;
-border-radius: 3px;
-margin: 2em 7em;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-background-image: linear-gradient(180deg, #F0F8FF, #D3D3D3);
-`;
-
-
 
 export const ErrorMesage = styled.span`
 color: #f00;

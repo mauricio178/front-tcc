@@ -10,12 +10,7 @@ import { api } from '../../../services/api'
 import { useLoader } from '../../../hooks/LoaderProvider'
 
 
-const initialData = {
-  email: "mau.ricio4@hotmail.com",
-  address: {
-    city: '',
-  }
-}
+const initialData = {}
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
@@ -39,8 +34,8 @@ export default function FirstAcess() {
 
   const history = useHistory()
 
-  const handleGoToLogin = useCallback(() => {
-    history.push('/login')
+  const handleGoToLogin = useCallback((email: string) => {
+    history.push('/login', {email})
   }, [history])
 
   const handleGoToRegister = useCallback((email: string) => {
@@ -72,7 +67,7 @@ export default function FirstAcess() {
 
     api.post("users/access", data)
       .then(res => {
-        handleGoToLogin()
+        handleGoToLogin(String(data.email))
       })
       .catch((err: IAxiosError) => {
         const { message } = err.response.data
@@ -99,7 +94,7 @@ export default function FirstAcess() {
     <AuthDefaultBackground>
       <Img><img src="./man.png" alt="imagem"></img></Img>
       <ContainerForm>
-        <Title>Primeiro Acesso</Title>
+        <Title>Insira seu E-mail</Title>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
           <Input placeholder="E-mail" type="email" name="email" />
 

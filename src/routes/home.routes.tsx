@@ -3,8 +3,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Aside } from '../components/aside';
 import { Header } from '../components/header';
 import { HomeContainer } from '../components/home/HomeContainer';
-import FirstAcess from '../pages/auth/acesso';
 import Login from '../pages/auth/login';
+import Repositorio from '../pages/dashboard/repositorio';
+import Dashboard from '../pages/dashboard';
+import Listagem from '../pages/dashboard/listagem';
+import FirstAcess from '../pages/auth/acesso';
 
 function HomeRoutes(){
     const [ renderAside, setRenderAside ] = useState(true)
@@ -18,8 +21,11 @@ function HomeRoutes(){
               <Switch>
 
                 {/* TODO, Maurício - Adicionar rotas autenticadas aqui */}
+                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/listagem" exact component={Listagem} />
+                <Route path="/repositorio" exact component={Repositorio} />
                 <Route path="/" exact component={FirstAcess} />
-                <Route path="/login" exact component={Login} />
+
 
               </Switch>
             </div>
