@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, ContainerForm, Title, Img } from './styled'
@@ -16,8 +16,6 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
 }
 
-
-
 interface IAxiosError {
   response: {
     data: {
@@ -29,9 +27,7 @@ interface IAxiosError {
 export default function FirstAcess() {
 
   const { toggleLoading } = useLoader()
-
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
-
   const history = useHistory()
 
   const handleGoToLogin = useCallback((email: string) => {
@@ -85,8 +81,6 @@ export default function FirstAcess() {
       }).finally(() => {
         toggleLoading()
       })
-
-
   }
 
 

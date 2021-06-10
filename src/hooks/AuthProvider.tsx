@@ -4,8 +4,6 @@ import { api } from '../services/api';
 import { useLoader } from './LoaderProvider';
 import Swal from 'sweetalert2'
 
-
-
 interface AuthContextData {
   login(data: ILoginDTO): void;
   logout(): boolean;
@@ -22,6 +20,14 @@ interface IAuthState{
   user: {
     name: string;
     email: string;
+  };
+  profile: {
+    name: string;
+    description: string;
+    permissions:{
+      name: string;
+      description: string;
+    }[] 
   }
 }
 
@@ -47,13 +53,23 @@ const AuthProvider: React.FC = ({ children }) => {
   const [ data, setData ] = useState<IAuthState>({} as IAuthState)
 
   useEffect(() => {
+    const { token, profile } = data
+    if(token){      
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.profile = profile
+    }
+  },[data])
+
+  useEffect(() => {
     const user = localStorage.getItem('@GP:user')
     const token = localStorage.getItem('@GP:token')
+    const profile = localStorage.getItem('@GP:profile')
 
     if(user && token){
       setData({
         token,
-        user: JSON.parse(user)
+        user: JSON.parse(user),
+        profile: profile && JSON.parse(profile)
       })
     }
   },[children])
@@ -71,12 +87,12 @@ const AuthProvider: React.FC = ({ children }) => {
         
         localStorage.removeItem('@GP:user')
         localStorage.removeItem('@GP:token')
+        localStorage.removeItem('@GP:profile')
 
         setData({} as IAuthState)
         return true
       }
     })
-
 
     return false;
   },[data])
@@ -90,14 +106,16 @@ const AuthProvider: React.FC = ({ children }) => {
         password
       })
 
-      const { user, token } = data
+      const { user, token, profile } = data
 
       localStorage.setItem('@GP:user', JSON.stringify(user))
+      localStorage.setItem('@GP:profile', JSON.stringify(profile))
       localStorage.setItem('@GP:token', token)
 
       setData({
         token,
-        user
+        user,
+        profile
       })
       Toast.fire({
         icon: 'success',
