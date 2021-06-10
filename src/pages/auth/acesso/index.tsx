@@ -88,16 +88,6 @@ export default function FirstAcess() {
       })
   }
 
-  useEffect(() => {
-    async function getTeam(){
-      const { data } = await api.get('team')
-
-      console.log("TEAM")
-      console.log(data)
-    }
-
-    getTeam()
-  },[])
 
   return (
     <AuthDefaultBackground>
