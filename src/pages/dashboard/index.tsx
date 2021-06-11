@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import SelectInput from '../../components/select'
-import { Container, ContainerTitle, ContainerDiv, Div, DivFixed } from './styled'
+
+import { Container, ContainerTitle, ContainerDiv, Div, RowFixed } from './styled'
 
 
 export default function Dashboard(props: any) {
@@ -13,7 +12,7 @@ export default function Dashboard(props: any) {
       </ContainerTitle>
       <ContainerDiv>
         <h4>Projetos</h4>
-        <DivFixed>
+        <RowFixed>
           <div>
             <p>Cód.</p>
           </div>
@@ -29,10 +28,16 @@ export default function Dashboard(props: any) {
           <div>
             <p>Situação</p>
           </div>
-        </DivFixed>
-        <Div></Div>
-        <Div></Div>
-        <Div></Div>
+        </RowFixed>
+        <Div>
+          
+        </Div>
+        <Div>
+        
+        </Div>
+        <Div>
+        
+        </Div>
         <h4>Tarefas</h4>
         <Div></Div>
         <Div></Div>

@@ -18,11 +18,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "module": "commonjs",
+    "module": "esnext",
     "noImplicitAny": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types",
+      "./src/@types"
     ]
   },
   "include": [

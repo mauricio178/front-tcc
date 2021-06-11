@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, } from 'react'
 import { Container } from './styled'
-import { FiFile, FiHome, FiUser } from 'react-icons/fi';
+import { FiFile, FiHome, FiUsers } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
 import AsideItem from '../AsideItem';
 
@@ -16,9 +16,7 @@ export const Aside = ({ renderAside }: IAside) => {
 
   return (
     <Container>
-      <header>
-        <img src="./man.png" alt="imagem"/>
-      </header>
+      
 
       <AsideItem 
         icon={<FiHome />}
@@ -33,7 +31,7 @@ export const Aside = ({ renderAside }: IAside) => {
       />
       
       <AsideItem 
-        icon={<FiUser />}
+        icon={<FiUsers />}
         path="/listagem"
         label="Equipe"
       />

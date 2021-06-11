@@ -3,11 +3,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Aside } from '../components/aside';
 import { Header } from '../components/header';
 import { HomeContainer } from '../components/home/HomeContainer';
-import Login from '../pages/auth/login';
 import Repositorio from '../pages/dashboard/repositorio';
 import Dashboard from '../pages/dashboard';
 import Listagem from '../pages/dashboard/listagem';
 import FirstAcess from '../pages/auth/acesso';
+import FormMember from '../pages/dashboard/listagem/form-member';
 
 function HomeRoutes(){
     const [ renderAside, setRenderAside ] = useState(true)
@@ -24,6 +24,7 @@ function HomeRoutes(){
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/listagem" exact component={Listagem} />
                 <Route path="/repositorio" exact component={Repositorio} />
+                <Route path="/form-member" exact component={FormMember} />
                 <Route path="/" exact component={FirstAcess} />
 
 

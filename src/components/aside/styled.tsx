@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background-color: #555;
+    margin-top: 50px;
 
     header {
       margin-bottom: 20px;
@@ -12,10 +13,11 @@
 
     > a {
 
-      padding: 15px ; 
+      padding: 10px ; 
       display: flex;
       align-items: center;
       flex-direction: row;
+      margin-left: 16px;
 
       h3 {
         margin-left: 16px;

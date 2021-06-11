@@ -12,6 +12,7 @@ interface IVerifyDTO{
 }
 
 export function verifyPermission({ permissions, url, method }: IVerifyDTO){
+
   let resource = ""
   
   if(url.includes('users')) return true

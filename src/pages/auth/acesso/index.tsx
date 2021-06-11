@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { Button, ContainerForm, Title, Img } from './styled'

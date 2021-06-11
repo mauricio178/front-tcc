@@ -5,8 +5,16 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: transparent;
   max-width: 80vw;
+
+  header {
+    max-height: 30px;
+
+    img {
+      max-height: 60px;
+      max-width: 70px;
+    }
+  }
 
   div {
     display: flex;
@@ -14,14 +22,13 @@ export const Container = styled.div`
     justify-content: center;
 
     * {
-      margin: 0 14px;
+      margin: 0 6px;
     }
 
     button:hover {
-      opacity: .9;
-      transition: opacity 3s;
-      background: red;
-      color: white;
+      opacity: .3;
+      transition: opacity .3s;
+      cursor: pointer;
     }
     button {
 

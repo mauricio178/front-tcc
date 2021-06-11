@@ -7,17 +7,38 @@ width: 100vw;
 align-items: center;
 flex-direction: column;
 background: 	#2F4F4F;
+  button {
+    padding: 3px;
+    margin-right: px;
+  }
 
 `;
 
 export const ContainerTitle = styled.div`
   display: flex;
-
   width: 90%;
   height: 10%;
-  border-radius: 8px;
   align-items: center;
   justify-content: space-between;
+
+  button {
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 0px solid;
+    background: transparent;
+    cursor: pointer;
+    color: white;
+      :hover{
+        background: #008080;
+        color: white;
+        transition: .7s;
+      }
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
 
   h2 {
     color: white;
@@ -44,25 +65,12 @@ export const ContainerDiv = styled.div`
 
 export const Div = styled.div`
   display: flex;
-  background:	#5F9EA0;
+  background:	#00a5a5;
   width: 98%;
   height: 7%;
   margin-top: 15px;
-  border-radius: 8px;
-  justify-content: space-between;
-  align-items: center;
+  border-radius: 10px;
 
-  situacao {
-
-  }
-
-  p{
-    color: black;
-    font-size: 14px;
-    font-family: Century Gothic;
-
-
-  }
 `;
 
 export const DivFixed = styled.div`

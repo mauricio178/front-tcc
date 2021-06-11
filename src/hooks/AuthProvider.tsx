@@ -69,7 +69,7 @@ const AuthProvider: React.FC = ({ children }) => {
       setData({
         token,
         user: JSON.parse(user),
-        profile: profile && JSON.parse(profile)
+        profile: profile ? JSON.parse(profile): {}
       })
     }
   },[children])
@@ -109,13 +109,13 @@ const AuthProvider: React.FC = ({ children }) => {
       const { user, token, profile } = data
 
       localStorage.setItem('@GP:user', JSON.stringify(user))
-      localStorage.setItem('@GP:profile', JSON.stringify(profile))
+      localStorage.setItem('@GP:profile', profile && JSON.stringify(profile))
       localStorage.setItem('@GP:token', token)
 
       setData({
         token,
         user,
-        profile
+        profile: profile || {}
       })
       Toast.fire({
         icon: 'success',

@@ -12,10 +12,9 @@ background: 	#2F4F4F;
 
 export const ContainerTitle = styled.div`
   display: flex;
-
-  width: 90%;
-  height: 10%;
-  border-radius: 8px;
+  width: 70em;
+  height: 50px;
+  border-radius: 2px;
   align-items: center;
   justify-content: space-between;
 
@@ -30,8 +29,8 @@ export const ContainerDiv = styled.div`
   background: 	#008080;
   border-radius: 8px;
   padding: 10px 10px; 
-  width: 89%;
-  height: 70%;
+  width: 70em;
+  height: 20em;
 
 
   h4 {
@@ -44,38 +43,39 @@ export const ContainerDiv = styled.div`
 
 export const Div = styled.div`
   display: flex;
-  background:	#5F9EA0;
-  width: 98%;
-  height: 7%;
-  margin-top: 15px;
-  border-radius: 8px;
+  background:	#00a5a5;
+  width: 68em;;
+  height: 1em;
+  margin-top: 3px;
+  padding: 4px;
+  border-radius: 3px;
   justify-content: space-between;
   align-items: center;
 
-  situacao {
-
+  div {
+    
   }
 
   p{
     color: black;
-    font-size: 14px;
+    font-size: 10px;
     font-family: Century Gothic;
 
 
   }
 `;
 
-export const DivFixed = styled.div`
+export const RowFixed = styled.div`
   display: flex;
-  width: 98%;
-  height: 7%;
-  border-radius: 8px;
+  width: 68em;;
+  height: 1em;
+  border-radius: 3px;
   justify-content: space-between;
   align-items: center;
 
   p{
     color: black;
-    font-size: 14px;
+    font-size: 14px bold;
     font-family: Century Gothic;
 
 

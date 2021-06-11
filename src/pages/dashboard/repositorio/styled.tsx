@@ -44,7 +44,7 @@ export const ContainerDiv = styled.div`
 
 export const Div = styled.div`
   display: flex;
-  background:	#5F9EA0;
+  background:	#00a5a5;
   width: 90px;
   height: 70px;
   margin-top: 10px;
