@@ -5,9 +5,9 @@ import { Header } from '../components/header';
 import { HomeContainer } from '../components/home/HomeContainer';
 import Repositorio from '../pages/dashboard/repositorio';
 import Dashboard from '../pages/dashboard';
-import Listagem from '../pages/dashboard/listagem';
+import Listagem from '../pages/dashboard/member/listagem';
 import FirstAcess from '../pages/auth/acesso';
-import FormMember from '../pages/dashboard/listagem/form-member';
+import FormMember from '../pages/dashboard/member/form';
 
 function HomeRoutes(){
     const [ renderAside, setRenderAside ] = useState(true)

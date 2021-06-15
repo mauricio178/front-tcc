@@ -12,8 +12,8 @@ background: 	#008080;
 
 export const ContainerForm = styled.div`
 display: flex;
-height: 60vh;
-width: 20vw;
+height: 300px;
+width: 250px;
 align-items: center;
 flex-direction: column;
 justify-content: center;
@@ -22,8 +22,20 @@ margin-top: 30px;
 border-radius: 10px;
 
     label {
-        padding: 20px 20px;
-        margin-top: 50px;
+      margin-left: 45px;
+      color: white;
+      font-family: Century Gothic;
+    }
+    
+    select {
+      border: transparent;
+      border-radius: 5px;
+      padding: 4px 0px;
+      margin-top: 0.5em;
+      margin-left: 48px;
+      box-shadow: 0 0 3px;
+      color: #444444;
+      font-family: Century Gothic;
     }
 `;
 export const ContainerHeader = styled.div`
@@ -50,13 +62,13 @@ font-weight: bold;
 font-size: 12px;
 background-color: 	#cc7008;
 padding: 5px 50px;
-margin-left: 8px;
-margin-top: 1.5em;
+margin-left: 45px;
+margin-top: 2em;
 margin-bottom: 1em;
 
   :hover {
       background: 	#FF4500;
-      transition: .8s;
+      transition: .3s;
       color: white;
   }
 `;

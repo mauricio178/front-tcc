@@ -30,9 +30,8 @@ export const Button = styled.button`
     
     :hover {
         background-color: #008080;
-        color: ;
+        color: white;
       }
-    }
 `;
 
 export const Nav = styled.div`

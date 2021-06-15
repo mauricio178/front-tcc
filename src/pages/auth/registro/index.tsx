@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Button, ContainerForm, ContainerFormLeft, Title, Img, InputSelect } from './styled'
+import { Button, ContainerForm, ContainerFormLeft, Title, Img } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { AuthDefaultBackground } from '../../../components/auth/bg'
@@ -44,13 +44,10 @@ export default function Registro(props: any) {
         acess_code: Yup.string().required(),
         password: Yup.string().required(),  
       });
-      console.log("Init validate")
 
       await schema.validate(data, {
         abortEarly: false,
       });
-
-      console.log("End Validate")
 
       toggleLoading()
 
@@ -98,7 +95,7 @@ export default function Registro(props: any) {
     const { email } = location.state as ILocation
 
     setInicialData({email})
-  }, [props])
+  }, [location, props])
 
   return (
     <AuthDefaultBackground>

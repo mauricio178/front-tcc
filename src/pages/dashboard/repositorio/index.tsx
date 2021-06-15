@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Container, ContainerTitle, ContainerDiv, Div, DivFixed } from './styled'
+// import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Container, ContainerTitle, ContainerDiv, Div} from './styled'
 
 
 export default function Repositorio(props: any) {
