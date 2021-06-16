@@ -7,7 +7,7 @@ import { api } from '../../../../services/api'
 import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
 import { Form } from '@unform/web';
-import { Select } from '../../../../components/select/styled';
+import  Select  from '../../../../components/select';
 
 interface IProfileProps{
   name: string;
@@ -47,8 +47,11 @@ export default function FormMember(props: any) {
       
       toggleLoading()
       
+      
       api.post("/team", data)
       .then(res => {
+        console.log("passou aqui")
+        console.log(res)
         handleGoToDashboard()
       })
       .catch((err: IAxiosError) => {
@@ -103,11 +106,10 @@ export default function FormMember(props: any) {
 
       <ContainerForm>
         <Form ref={formRef} onSubmit={handleSubmit}>
-
           <Input placeholder="E-mail" type="email" name="email" />
           <Input placeholder="Nome" type="text" name="name" />
           <label>Perfil</label>
-          <Select>
+          <Select name="permission">
             {profileList.map((profile: IProfileProps) => (
               <option value={profile.name}>{profile.description}</option>
             ))}

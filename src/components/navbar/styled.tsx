@@ -6,7 +6,7 @@ export const MenuBar = styled.div`
     width: 80px;
     z-index: 1;
     height: 510px;
-    background: gray;
+    background: #00008B;
     padding-top: 10px;
     justify-items: left;
 `;
