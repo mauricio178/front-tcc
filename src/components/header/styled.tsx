@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   background: transparent;
-  max-width: 80vw;
+  /* max-width: 80vw; */
 
   div {
     display: flex;

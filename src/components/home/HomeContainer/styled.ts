@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 960px;
+  /* max-width: 960px; */
+  width: 100%;
+
+  object-fit: contain;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,6 +12,7 @@ export const Container = styled.div`
   background-color: #fff;
 
   .innerPage {
+    width: 100%;
     display: flex;
     flex-direction: column;
 

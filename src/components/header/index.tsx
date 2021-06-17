@@ -17,7 +17,7 @@ export const Header = ({ setRenderAside }: IHeader) => {
   const handleLogout = useCallback(() => {
     const confirmLogout =  logout()
     if(confirmLogout){
-      history.push('/login')
+      history.push('/')
     }
   }, [])
 

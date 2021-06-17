@@ -16,12 +16,12 @@ export default createGlobalStyle`
         position:relative;
         min-height: 100vh;
         /* height: 100%; */
-        max-width: 960px;
+        /* max-width: 960px; */
     }
 
     html, body {
-        width: 100%;
-        height: 100%;
+        /* width: 100%; */
+        /* height: 100%; */
     }
 
     a:link {
