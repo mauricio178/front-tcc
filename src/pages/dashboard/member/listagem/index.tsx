@@ -28,8 +28,8 @@ export default function Listagem(props: any) {
 
   const history = useHistory()
 
-  const handleGoToEditUser = React.useCallback(() => {
-    history.push('./form-member')
+  const handleGoToEditUser = React.useCallback((email: string) => {
+    history.push('./form-member', {email})
   }, [history])
 
   const handleGoToDeleteUser = React.useCallback((email: string) => {
@@ -80,7 +80,7 @@ export default function Listagem(props: any) {
               <DivControls>
                 <button><FiMoreHorizontal size="16"></FiMoreHorizontal></button>
                 <button onClick={() => handleGoToDeleteUser(member.email)}><FiTrash2 size="16"></FiTrash2></button>
-                <button onClick={handleGoToEditUser}><FiEdit size="16"></FiEdit></button>
+                <button onClick={() => handleGoToEditUser(member.email)}><FiEdit size="16"></FiEdit></button>
               </DivControls>
             </>
           ))}

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Container, ContainerForm, ContainerHeader, Button } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { api } from '../../../../services/api'
 import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
@@ -18,6 +18,11 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
 }
 
+interface ILocation {
+  email: string,
+}
+
+
 interface IAxiosError {
   response: {
     data: {
@@ -30,6 +35,19 @@ interface IAxiosError {
 export default function FormMember(props: any) {
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
+  
+  const history = useHistory()
+
+  const [initialData, setInicialData] = useState({})
+
+
+  useEffect(() => {
+    const { email } = location.state as ILocation
+    setInicialData({email})
+  }, [])
+  
+
+  const location = useLocation()
 
   const { toggleLoading } = useLoader()
   
@@ -78,7 +96,6 @@ export default function FormMember(props: any) {
     }
   }
   
-  const history = useHistory()
 
   const handleGoToDashboard = useCallback(() => {
     history.push('/dashboard')
@@ -95,6 +112,8 @@ export default function FormMember(props: any) {
   useEffect(() => {
     fetchPerfil()
   }, [])
+  
+
 
   return (
     <Container>
@@ -105,7 +124,7 @@ export default function FormMember(props: any) {
       </ContainerHeader>
 
       <ContainerForm>
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
           <Input placeholder="E-mail" type="email" name="email" />
           <Input placeholder="Nome" type="text" name="name" />
           <label>Perfil</label>
