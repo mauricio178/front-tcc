@@ -5,7 +5,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 80vw;
+  background: transparent;
+  /* max-width: 80vw; */
 
   header {
     max-height: 30px;

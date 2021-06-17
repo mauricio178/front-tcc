@@ -10,17 +10,13 @@ import FirstAcess from '../pages/auth/acesso';
 import FormMember from '../pages/dashboard/member/form';
 
 function HomeRoutes(){
-    const [ renderAside, setRenderAside ] = useState(true)
-
     return (
       <BrowserRouter>
           <HomeContainer>
-            <Aside renderAside={renderAside} />
-            <div className="innerPage">
-              <Header setRenderAside={setRenderAside} />
-              <Switch>
 
+              <Switch>
                 {/* TODO, Maurício - Adicionar rotas autenticadas aqui */}
+                <Route path="/" exact component={FirstAcess} />
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/listagem" exact component={Listagem} />
                 <Route path="/repositorio" exact component={Repositorio} />
@@ -29,7 +25,7 @@ function HomeRoutes(){
 
 
               </Switch>
-            </div>
+           
           </HomeContainer>
       </BrowserRouter>
     );
