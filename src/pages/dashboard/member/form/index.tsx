@@ -7,9 +7,9 @@ import { api } from '../../../../services/api'
 import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
 import { Form } from '@unform/web';
-import  Select  from '../../../../components/select';
+import Select from '../../../../components/select';
 
-interface IProfileProps{
+interface IProfileProps {
   name: string;
   description: string;
 }
@@ -19,7 +19,11 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 interface ILocation {
-  email: string,
+  member: {
+    email: string,
+    name: string;
+    profile: string; 
+  }
 }
 
 
@@ -35,22 +39,27 @@ interface IAxiosError {
 export default function FormMember(props: any) {
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
-  
+
   const history = useHistory()
 
   const [initialData, setInicialData] = useState({})
 
+  const [edit, setEdit] = useState(false)
+
 
   useEffect(() => {
-    const { email } = location.state as ILocation
-    setInicialData({email})
+    if (location.state) {
+      let { member } = location.state as ILocation
+      setInicialData(member)
+      setEdit(true)
+    }
   }, [])
-  
+
 
   const location = useLocation()
 
   const { toggleLoading } = useLoader()
-  
+
   async function handleSubmit(data: any,) {
     try {
       const schema = Yup.object().shape({
@@ -58,34 +67,50 @@ export default function FormMember(props: any) {
         name: Yup.string().required(),
         permission: Yup.string().required(),
       });
-      
+
       await schema.validate(data, {
         abortEarly: false,
       });
-      
+
       toggleLoading()
-      
-      
-      api.post("/team", data)
-      .then(res => {
-        console.log("passou aqui")
-        console.log(res)
-        handleGoToDashboard()
-      })
-      .catch((err: IAxiosError) => {
-        const { message } = err.response.data
-        alert(message)
-      }).finally(() => {
-        toggleLoading()
-      })
-      
+
+      if (edit) {
+        api.put("/team", data)
+          .then(res => {
+            console.log("passou aqui")
+            console.log(res)
+            handleGoToDashboard()
+          })
+          .catch((err: IAxiosError) => {
+            const { message } = err.response.data
+            alert(message)
+          }).finally(() => {
+            toggleLoading()
+          })
+      } else {
+        api.post("/team", data)
+          .then(res => {
+            console.log("passou aqui")
+            console.log(res)
+            handleGoToDashboard()
+          })
+          .catch((err: IAxiosError) => {
+            const { message } = err.response.data
+            alert(message)
+          }).finally(() => {
+            toggleLoading()
+          })
+      }
+
+
+
     } catch (err) {
-      
+
       console.log(err.message)
-      
+
       if (err instanceof Yup.ValidationError) {
         let errorMessages = {}
-        
+
         err.inner.forEach(error => errorMessages = {
           ...errorMessages,
           [`${err.path}`]: err.message
@@ -95,24 +120,24 @@ export default function FormMember(props: any) {
       console.log(data)
     }
   }
-  
+
 
   const handleGoToDashboard = useCallback(() => {
     history.push('/dashboard')
-  }, [history])  
+  }, [history])
 
-  const [profileList, setProfileList] = useState ([]);
+  const [profileList, setProfileList] = useState([]);
 
-  async function fetchPerfil(){
-   const { data } = await api.get('profile')
-   setProfileList(data) 
-   console.log(data)   
+  async function fetchPerfil() {
+    const { data } = await api.get('profile')
+    setProfileList(data)
+    console.log(data)
   }
 
   useEffect(() => {
     fetchPerfil()
   }, [])
-  
+
 
 
   return (
