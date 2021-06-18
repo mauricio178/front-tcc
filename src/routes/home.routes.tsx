@@ -8,6 +8,7 @@ import Dashboard from '../pages/dashboard';
 import Listagem from '../pages/dashboard/member/listagem';
 import FirstAcess from '../pages/auth/acesso';
 import FormMember from '../pages/dashboard/member/form';
+import FormProjeto from '../pages/dashboard/projeto/form';
 
 function HomeRoutes(){
     return (
@@ -22,6 +23,8 @@ function HomeRoutes(){
                 <Route path="/repositorio" exact component={Repositorio} />
                 <Route path="/form-member" exact component={FormMember} />
                 <Route path="/" exact component={FirstAcess} />
+                <Route path="/form-project" exact component={FormProjeto} />
+                
 
 
               </Switch>
