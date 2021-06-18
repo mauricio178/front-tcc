@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+
   background: white;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border-radius: 4px;
+  border-radius: 3px;
   align-items: center;
-  margin: 3px;
-  height: 7vh;
+  margin: 4px;
+  height: 8vh;
   opacity: 0.8;
   color: #272727;
   font-size: 17px;
@@ -22,35 +23,38 @@ export const Container = styled.div`
 `;
 
 export const DivIcon = styled.div`
+  margin-left: 10px;
 
   width: 5%;
-  margin-left: 4px;
-
 `;
 
-export const DivEmail = styled.div`
+export const DivId = styled.div`
 
-width: 35%;
-  
+  width: 5%;
 `;
 
 export const DivName = styled.div`
 
-  width: 25%;
+  width: 20%;
 `;
 
-export const DivProfile = styled.div`
 
-  width: 25%;
-  height: 50%;
+export const DivGerente = styled.div`
+  width: 20%;
+
+`;
+
+export const DivDate = styled.div`
+  width: 15%;
 `;
 
 export const DivControls = styled.div`
-  width: 10%;
+  width: 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  background: white;
 
   button{
     cursor: pointer;
@@ -58,13 +62,17 @@ export const DivControls = styled.div`
     margin: 5px;
     border-radius: 2px;
     border: transparent;
-    background: transparent;
-    color: #033f2a;
+    color: #168853;
+    background: white;
+    font-size: 14px;
+    svg {
+      background: white;
+    }
     :hover {
-      background: #014f3e;
       transition: 0.8s;
       border-radius: 4px;
-      color: #75f3ce
+      color: #00301b;
+      font-size: 15px;
     }
 
   }

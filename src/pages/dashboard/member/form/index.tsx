@@ -65,7 +65,7 @@ export default function FormMember(props: any) {
       const schema = Yup.object().shape({
         email: Yup.string().email().required(),
         name: Yup.string().required(),
-        permission: Yup.string().required(),
+        profile: Yup.string().required(),
       });
 
       await schema.validate(data, {
@@ -77,7 +77,6 @@ export default function FormMember(props: any) {
       if (edit) {
         api.put("/team", data)
           .then(res => {
-            console.log("passou aqui")
             console.log(res)
             handleGoToDashboard()
           })
@@ -90,7 +89,6 @@ export default function FormMember(props: any) {
       } else {
         api.post("/team", data)
           .then(res => {
-            console.log("passou aqui")
             console.log(res)
             handleGoToDashboard()
           })
@@ -143,8 +141,6 @@ export default function FormMember(props: any) {
   return (
     <Container>
       <ContainerHeader>
-        <div>
-        </div>
         <h2>Adicionar Novo Membro</h2>
       </ContainerHeader>
 
@@ -153,7 +149,7 @@ export default function FormMember(props: any) {
           <Input placeholder="E-mail" type="email" name="email" />
           <Input placeholder="Nome" type="text" name="name" />
           <label>Perfil</label>
-          <Select name="permission">
+          <Select name="profile">
             {profileList.map((profile: IProfileProps) => (
               <option value={profile.name}>{profile.description}</option>
             ))}

@@ -22,7 +22,7 @@ margin-top: 30px;
 border-radius: 10px;
 
     label {
-      margin-left: 45px;
+      margin-left:10px;
       color: white;
       font-family: Century Gothic;
     }
@@ -30,9 +30,8 @@ border-radius: 10px;
     select {
       border: transparent;
       border-radius: 5px;
-      padding: 4px 0px;
+      padding: 4px 4px;
       margin-top: 0.5em;
-      margin-left: 48px;
       box-shadow: 0 0 3px;
       color: #444444;
       font-family: Century Gothic;

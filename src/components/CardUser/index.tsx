@@ -2,18 +2,18 @@ import React from 'react';
 import { FiEdit, FiMoreHorizontal, FiTrash2, FiUser } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Toast } from '../../hooks/AuthProvider';
+import { useLoader } from '../../hooks/LoaderProvider';
 import { api } from '../../services/api';
 import { Container, DivControls, DivIcon, DivEmail, DivName, DivProfile } from './styled'
 
-export const CardUser = ({ member }: any) => {
+export const CardUser = ({ member, fetchMember }: any) => {
 
   const history = useHistory()
 
-
-
   const handleGoToEditUser = React.useCallback((member: any) => {
     history.push('./form-member', { member })
-  }, [history])
+  }, [ history])
 
   const handleGoToDeleteUser = React.useCallback((email: string) => {
     Swal.fire({
@@ -23,10 +23,14 @@ export const CardUser = ({ member }: any) => {
       confirmButtonColor: '#008080',
       cancelButtonText: 'Não'
     }).then(async (result: { isConfirmed: any; }) => {
+
       if (result.isConfirmed) {
         await api.delete(`team?email=${email}`)
-        alert('Usuário Deletado')
-        // fetchMember()
+        Toast.fire({
+          icon: 'success',
+          title: `Usuário Deletado com sucesso`
+        })
+        fetchMember()
 
       }
     })

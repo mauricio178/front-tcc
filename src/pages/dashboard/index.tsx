@@ -1,6 +1,7 @@
 
 import { Container, ContainerTitle, ContainerDiv } from './styled'
 import { FiGrid, FiFolderPlus, FiSearch } from 'react-icons/fi'
+import { CardProject } from '../../components/CardProject';
 
 
 export default function Dashboard(props: any) {
@@ -20,18 +21,7 @@ export default function Dashboard(props: any) {
         </button>
       </ContainerTitle>
       <ContainerDiv>
-        <div>
-          <div>
-          </div>
-          <div>
-          </div>
-          <div>
-          </div>
-          <div>
-          </div>
-          <div>
-          </div>
-        </div>
+        <CardProject/>
       </ContainerDiv>
 
     </Container>

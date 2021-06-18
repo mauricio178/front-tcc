@@ -35,7 +35,7 @@ export const AuthProviderContext = createContext<AuthContextData>(
   {} as AuthContextData,
 );
 
-const Toast = Swal.mixin({
+export const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
@@ -122,6 +122,7 @@ const AuthProvider: React.FC = ({ children }) => {
         title: `${email} autenticado com sucesso`
       })
       toggleLoading()
+
       
     } catch (error) {
       toggleLoading()

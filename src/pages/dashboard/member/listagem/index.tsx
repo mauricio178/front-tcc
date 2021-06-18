@@ -1,11 +1,10 @@
-import { FiUserPlus, FiUsers, FiSearch, FiUser, FiMoreHorizontal, FiEdit, FiTrash2 } from 'react-icons/fi';
+import { FiUserPlus, FiUsers, FiSearch } from 'react-icons/fi';
 import { useCallback, useEffect, useState } from 'react'
 import { Container, ContainerTitle, ContainerDiv } from './styled'
 import { CardUser } from '../../../../components/CardUser'
 import { useHistory } from 'react-router-dom';
 import { api } from '../../../../services/api';
-import React from 'react';
-import Swal from 'sweetalert2';
+
 
 interface IMemberProps {
   email: string;
@@ -14,12 +13,15 @@ interface IMemberProps {
 }
 
 
+
+
 export default function Listagem(props: any) {
 
   const [memberList, setMemberList] = useState([]);
 
   async function fetchMember() {
     const { data } = await api.get('team')
+
     setMemberList(data)
     console.log(data)
   }
@@ -48,7 +50,7 @@ export default function Listagem(props: any) {
       </ContainerTitle>
       <ContainerDiv>
           {memberList.map((member: IMemberProps) => (
-            <CardUser member={member} />
+            <CardUser member={member} fetchMember={fetchMember} />
           ))}
       </ContainerDiv>
     </Container>
