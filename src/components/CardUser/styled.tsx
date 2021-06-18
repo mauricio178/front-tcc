@@ -22,7 +22,7 @@ export const Container = styled.div`
 `;
 
 export const DivIcon = styled.div`
-
+  padding-left: 16px;
   width: 5%;
   margin-left: 4px;
 

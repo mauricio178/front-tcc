@@ -17,12 +17,10 @@ function HomeRoutes(){
 
               <Switch>
                 {/* TODO, Maurício - Adicionar rotas autenticadas aqui */}
-                <Route path="/" exact component={FirstAcess} />
-                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/" exact component={Dashboard} />
                 <Route path="/listagem" exact component={Listagem} />
                 <Route path="/repositorio" exact component={Repositorio} />
                 <Route path="/form-member" exact component={FormMember} />
-                <Route path="/" exact component={FirstAcess} />
                 <Route path="/form-project" exact component={FormProjeto} />
                 
 
