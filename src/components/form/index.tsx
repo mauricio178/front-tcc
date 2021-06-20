@@ -3,26 +3,15 @@ import { Container } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
 import { useHistory } from 'react-router-dom';
-import { api } from '../../../../services/api'
-import { useLoader } from '../../../../hooks/LoaderProvider';
-import Input from '../../../../components/input';
+import { api } from '../../services/api'
+import { useLoader } from '../../hooks/LoaderProvider';
+import Input from '../input';
 
-import Select from '../../../../components/select';
-import { SecondaryButton } from '../../../../components/SecondaryButton';
-import { useFormMember } from '../../../../hooks/FormMemberProvider';
-
-
-interface IProfileProps {
-  name: string;
-  description: string;
-}
-
-interface IMemberInterface {
-  email: string;
-  name: string;
-  profile: string;
-}
-
+import Select from '../select';
+import { SecondaryButton } from '../SecondaryButton';
+import { useFormModal } from '../../hooks/FormModalProvider';
+import { useGlobalData } from '../../hooks/GlobalDataProvider';
+import { Toast } from '../../hooks/AuthProvider';
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
@@ -47,24 +36,14 @@ interface IAxiosError {
 
 
 export function FormMember(props: any) {
-  const { handleOpenModal } = useFormMember()
+  const { handleReloadMemberList, handleReloadProfileList, profileList } = useGlobalData()
+  const { data: formData, handleCloseModal } = useFormModal()
+
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
+  const edit = !!formData
 
   const history = useHistory()
 
-  const [edit, setEdit] = useState(false)
-
-
-  // useEffect(() => {
-  //   if (location.state) {
-  //     let { member } = location.state as ILocation
-  //     setInicialData(member)
-  //     setEdit(true)
-  //   }
-  // }, [])
-
-
-  // const location = useLocation()
 
   const { toggleLoading } = useLoader()
 
@@ -86,41 +65,42 @@ export function FormMember(props: any) {
         api.put("/team", data)
           .then(res => {
             console.log(res)
-            handleGoToListagem()
+            Toast.fire({
+              icon: 'success',
+              title: `Usuário editado com sucesso`
+            })
+            handleReloadMemberList()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
+            handleCloseModal()
+
           })
       } else {
         api.post("/team", data)
           .then(res => {
             console.log(res)
-            handleGoToListagem()
+            handleReloadMemberList()
+            Toast.fire({
+              icon: 'success',
+              title: `Usuário adicionado com sucesso`
+            })
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
+            handleCloseModal()
           })
       }
 
     } catch (error) {
 
       console.log(error.message)
-
-      // if (err instanceof Yup.ValidationError) {
-      //   let errorMessages = {}
-
-      //   err.inner.forEach(error => errorMessages = {
-      //     ...errorMessages,
-      //     [`${err.path}`]: err.message
-      //   });
-      //   formRef.current.setErrors(errorMessages);
-      // }
 
       if(error instanceof Yup.ValidationError){
         let errorMessages = {}
@@ -136,17 +116,8 @@ export function FormMember(props: any) {
     }
   }
 
-
-  const handleGoToListagem = useCallback(() => {
-    history.push('/listagem')
-  }, [history])
-
-  const [profileList, setProfileList] = useState([]);
-
   async function fetchPerfil() {
-    const { data } = await api.get('profile')
-    setProfileList(data)
-    console.log(data)
+    handleReloadProfileList()
   }
 
   useEffect(() => {
@@ -154,18 +125,20 @@ export function FormMember(props: any) {
   }, [])
 
   return (
-    <Container ref={formRef} initialData={props.data} onSubmit={handleSubmit}>
+    <Container ref={formRef} initialData={formData} onSubmit={handleSubmit}>
         
-        <h2>{props.data ? 'Editar membro' : 'Adicionar membro'}</h2>
+        <h2>{formData ? 'Editar membro' : 'Adicionar membro'}</h2>
 
         <Input placeholder="E-mail" type="email" name="email" />
         <Input placeholder="Nome" type="text" name="name" />
-        <Select name="profile">
-          <option value={``}>SELECIONE SEU PERFIL</option>
-          {profileList.map((profile: IProfileProps) => (
-            <option value={profile.name}>{profile.description}</option>
-          ))}
-        </Select>
+        {profileList.length && 
+          <Select name="profile" >
+            <option value={``}>SELECIONE UM PERFIL</option>
+            {profileList.map(profile => (
+              <option value={profile.name}>{profile.description}</option>
+            ))}
+          </Select>
+        }
 
         <SecondaryButton label="Adicionar" />
 

@@ -10,6 +10,8 @@ const SelectInput: React.FC<InputProps> = ({ name, placeholder, children, ...res
   const inputRef = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
+  console.log({fieldName, registerField, defaultValue, error})
+
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -21,7 +23,7 @@ const SelectInput: React.FC<InputProps> = ({ name, placeholder, children, ...res
   return(
     <Container error={error}>
       { error && <span style={{color: '#f00'}}>{error}</span>}
-      <select placeholder={placeholder} ref={inputRef} defaultValue={defaultValue} {...rest}>
+      <select ref={inputRef} defaultValue={defaultValue} {...rest}>
         {children}
       </select>
     </Container>

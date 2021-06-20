@@ -6,7 +6,10 @@ import { useHistory } from 'react-router-dom';
 import { api } from '../../../../services/api';
 import { useRouter } from '../../../../hooks/RouterProvider';
 import { PrimaryButton } from '../../../../components/PrimaryButton';
-import { useFormMember } from '../../../../hooks/FormMemberProvider';
+
+import { FormMember } from '../../../../components/form';
+import { useFormModal } from '../../../../hooks/FormModalProvider';
+import { useGlobalData } from '../../../../hooks/GlobalDataProvider';
 
 interface IMemberProps {
   email: string;
@@ -15,16 +18,14 @@ interface IMemberProps {
 }
 
 export default function Listagem(props: any) {
-  const { handleOpenModal } = useFormMember()
+  const { handleOpenModal, handlesSetFormComponent } = useFormModal()
+  const { handleReloadMemberList, memberList } = useGlobalData()
   const { handleSetHeaderTitle } = useRouter()
-  const [memberList, setMemberList] = useState([]);
 
   async function fetchMember() {
-    const { data } = await api.get('team')
-
-    setMemberList(data)
-    console.log(data)
+    handleReloadMemberList()
   }
+
   useEffect(() => {
     fetchMember()
     handleSetHeaderTitle('Equipe')
@@ -33,7 +34,7 @@ export default function Listagem(props: any) {
   const history = useHistory()
 
   const handleGoToFormMember = useCallback(() => {
-    // history.push('/form-member')
+    handlesSetFormComponent(<FormMember />)
   }, [history])
 
   return (
@@ -42,7 +43,7 @@ export default function Listagem(props: any) {
 
         <ContainerTitle>
           <p />          
-          <PrimaryButton onClick={handleOpenModal} label="+ Novo Membro"> </PrimaryButton>
+          <PrimaryButton onClick={handleGoToFormMember} label="+ Novo Membro"> </PrimaryButton>
         </ContainerTitle>
         <ContainerDiv>
           <table>
@@ -55,7 +56,7 @@ export default function Listagem(props: any) {
               </tr>
             </thead>
             <tbody>
-              {memberList.map((member: IMemberProps) => (
+              {memberList && memberList.map((member: IMemberProps) => (
                 <CardUser member={member} fetchMember={fetchMember} />
                 ))}
             </tbody>

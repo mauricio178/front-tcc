@@ -17,7 +17,7 @@ export default function Input({ name, ...rest }:any) {
     return (
         <Container error={error}>
             { error && <span style={{color: '#f00'}}>{error}</span>}
-            <input ref={inputRef} defaultValue={defaultValue} {...rest} />
+            <input ref={inputRef}  defaultValue={defaultValue} {...rest} />
         </Container>
     );
 }

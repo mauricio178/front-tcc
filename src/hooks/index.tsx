@@ -1,19 +1,23 @@
 import React from "react";
 import { AuthProvider } from "./AuthProvider";
-import { FormMemberProvider } from "./FormMemberProvider";
+import { FormModalProvider } from "./FormModalProvider";
+import { GlobalDataProvider } from "./GlobalDataProvider";
+
 import { LoaderProvider } from "./LoaderProvider";
 import { RouterProvider } from "./RouterProvider";
 
 const AppProvider: React.FC = ({ children }) => (
-  <LoaderProvider>
-    <AuthProvider>
-      <RouterProvider>
-        <FormMemberProvider>
-          {children}
-        </FormMemberProvider>
-      </RouterProvider>
-    </AuthProvider>
-  </LoaderProvider>
+  <GlobalDataProvider>
+    <LoaderProvider>
+      <AuthProvider>
+        <RouterProvider>
+          <FormModalProvider>
+            {children}
+          </FormModalProvider>
+        </RouterProvider>
+      </AuthProvider>
+    </LoaderProvider>
+  </GlobalDataProvider>
 )
 
 
