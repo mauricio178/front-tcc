@@ -8,10 +8,10 @@ function AuthRoutes(){
     return (
         <BrowserRouter>
             <Switch>
+
               <Route path="/" exact component={FirstAcess} />
               <Route path="/login" exact component={Login} />
               <Route path="/registro" exact component={Registro} />
-              
 
             </Switch>
         </BrowserRouter>

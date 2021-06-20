@@ -25,7 +25,7 @@ export const ContainerTitle = styled.div`
     border: 0px solid;
     box-shadow: 0 0 1px;
     font-size: 15px;
-    font-family: Century Gothic;
+    ;
     margin-right: 5px;
 
   }
@@ -52,7 +52,7 @@ export const ContainerTitle = styled.div`
     margin-left: 5px;
     color: #2F4F4F;
     font-size: 25px;
-    font-family: Century Gothic;
+    ;
   }
 `;
 

@@ -1,24 +1,17 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  background: white;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  border-radius: 4px;
   align-items: center;
-  margin: 3px;
-  height: 7vh;
-  opacity: 0.8;
-  color: #272727;
-  font-size: 17px;
-  font-family: Centry Gotic;
-  box-shadow: 0 0 1px;
+  justify-content: space-between;
+
   :hover{
     opacity: 1;
     transition: 0.8s;
     color: black;
   }
+
+
 `;
 
 export const DivIcon = styled.div`

@@ -10,7 +10,7 @@ margin-top: 1em;
 
 export const Title = styled.h1`
 display: flex;
-font-family: Century Gothic;
+;
 color: #2F4F4F;
 font-size: 22px;
 margin-left: 1.2em;
@@ -21,7 +21,7 @@ border: 1px solid #25692A;
 color: white;
 border-radius: 3px;
 cursor:pointer;
-font-family: Century Gothic;
+;
 font-weight: bold;
 font-size: 12px;
 background-color: 	#FF4500;
@@ -42,7 +42,7 @@ export const InputSelect = styled.input`
   border-radius: 3px;
   margin-left: 31px;
   font-size: 12px;
-  font-family: Century Gothic;
+  ;
 `;
 
 export const ContainerFormLeft = styled.div`

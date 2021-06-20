@@ -21,7 +21,7 @@ background: 	#00a5a5;
     label {
       margin-left:10px;
       color: white;
-      font-family: Century Gothic;
+      ;
     }
     
     select {
@@ -31,7 +31,7 @@ background: 	#00a5a5;
       margin-top: 0.5em;
       box-shadow: 0 0 3px;
       color: #444444;
-      font-family: Century Gothic;
+      ;
     }
 `;
 export const ContainerHeader = styled.div`
@@ -56,7 +56,7 @@ border: 1px solid #25692A;
 color: #c2c2c2;
 border-radius: 3px;
 cursor:pointer;
-font-family: Century Gothic;
+;
 font-weight: bold;
 font-size: 12px;
 background-color: 	#cc7008;

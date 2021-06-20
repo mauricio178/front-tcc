@@ -10,7 +10,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-font-family: Century Gothic;
+
 color: #2F4F4F;
 `;
 
@@ -19,20 +19,20 @@ margin-left: 1em;
 font-size: 27px;
 margin-top: 1em;
 flex-direction: column;
-font-family: Century Gothic;
+
 color: #D3D3D3;
 `;
 
 export const Lbl = styled.p`
   margin: 3em;
-  font-family: Century Gothic;
-  font-size: 10px;
+  
+  
 `;
 
 export const Legend = styled.p`
 margin: 2em;
 margin-top: 5px;
-font-family: Century Gothic;
+
 color: 	#B0C4DE;
 `;
 
@@ -41,7 +41,7 @@ border: 1px solid #25692A;
 color: white;
 border-radius: 3px;
 cursor:pointer;
-font-family: Century Gothic;
+
 font-weight: bold;
 font-size: 12px;
 background-color: 	#FF4500;
@@ -53,8 +53,8 @@ margin-bottom: 1em;
 
 export const Button2 = styled.button`
   padding: 5px;
-  font-family:Century Gothic;
-  font-weight:bold;
+  
+  
   background-color: Transparent;
   border: 1px solid 	#B0C4DE;
   color: 	#B0C4DE;

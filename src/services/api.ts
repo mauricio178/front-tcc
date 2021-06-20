@@ -2,8 +2,8 @@ import axios from 'axios';
 import { verifyPermission } from '../utils/profileUtils';
 
 export const api = axios.create({
- // baseURL: "http://localhost:3333/"
-    baseURL: "https://projeto-gp.herokuapp.com/"
+ baseURL: "http://localhost:3333/"
+    // baseURL: "https://projeto-gp.herokuapp.com/"
 });
 
 api.interceptors.request.use(function (config) {
@@ -19,7 +19,6 @@ api.interceptors.request.use(function (config) {
   console.log({PERMITED})
 
   // if(!PERMITED) throw new Error("OPERATION NOT PERMITTED!");
-  
 
   return config;
 }, function (error) {

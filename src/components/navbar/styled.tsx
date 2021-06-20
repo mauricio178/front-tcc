@@ -15,14 +15,14 @@ export const MenuBar = styled.div`
 export const Titlle = styled.h2`
     font-size: 20px;
     padding: 2px;
-    font-family: Century Gothic;
+    ;
     color: white;
     margin-bottom: 5px;
 `;
 
 export const Button = styled.button`
     display: flex;
-    font-family: Century Gothic;
+    ;
     background: transparent;
     padding: 3px;
     margin-top: 8px;

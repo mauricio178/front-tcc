@@ -3,21 +3,24 @@ import { Container } from './styled'
 import { FiMenu, FiUser, FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
 import { useHistory } from 'react-router';
+import { useRouter } from '../../hooks/RouterProvider';
 
 interface IHeader {
   setRenderAside(data: any): void
 }
 
 export const Header = ({ setRenderAside }: IHeader) => {
-
   const history = useHistory()
+  const { headerTitle } = useRouter()
 
   const { data: { user }, logout } = useAuth()
 
   const handleLogout = useCallback(() => {
     const confirmLogout = logout()
     if (confirmLogout) {
-      history.push('/')
+      setTimeout(() => {
+        history.push('/login')
+      },200)
     }
   }, [])
 
@@ -28,12 +31,10 @@ export const Header = ({ setRenderAside }: IHeader) => {
   return (
     <Container>
       <div>
-        <button type='button' onClick={handleToggleAside} >
+        {/* <button type='button' onClick={handleToggleAside} >
           <FiMenu size={16} />
-        </button>
-        <header>
-          <img src="./man-logo.png" alt="imagem" />
-        </header>
+        </button>         */}
+        <h2>{headerTitle}</h2>
       </div>
       <div>
         <FiUser size={18} /> Bem vindo(a), {user.name}

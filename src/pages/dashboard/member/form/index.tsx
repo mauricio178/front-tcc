@@ -1,18 +1,28 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Container, ContainerForm, ContainerHeader, Button } from './styled'
+import { Container } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { api } from '../../../../services/api'
 import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
-import { Form } from '@unform/web';
+
 import Select from '../../../../components/select';
+import { SecondaryButton } from '../../../../components/SecondaryButton';
+import { useFormMember } from '../../../../hooks/FormMemberProvider';
+
 
 interface IProfileProps {
   name: string;
   description: string;
 }
+
+interface IMemberInterface {
+  email: string;
+  name: string;
+  profile: string;
+}
+
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
   setErrors(error: any): void
@@ -36,36 +46,34 @@ interface IAxiosError {
 }
 
 
-export default function FormMember(props: any) {
-
+export function FormMember(props: any) {
+  const { handleOpenModal } = useFormMember()
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
 
   const history = useHistory()
 
-  const [initialData, setInicialData] = useState({})
-
   const [edit, setEdit] = useState(false)
 
 
-  useEffect(() => {
-    if (location.state) {
-      let { member } = location.state as ILocation
-      setInicialData(member)
-      setEdit(true)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (location.state) {
+  //     let { member } = location.state as ILocation
+  //     setInicialData(member)
+  //     setEdit(true)
+  //   }
+  // }, [])
 
 
-  const location = useLocation()
+  // const location = useLocation()
 
   const { toggleLoading } = useLoader()
 
   async function handleSubmit(data: any,) {
     try {
-      const schema = Yup.object().shape({
-        email: Yup.string().email().required(),
-        name: Yup.string().required(),
-        profile: Yup.string().required(),
+      const schema = Yup.object().shape({        
+        email: Yup.string().email('Email inválido').required('Email é um campo obrigatório'),
+        name: Yup.string().required('Nome é um campo obrigatório'),
+        profile: Yup.string().required('Perfil é um campo obrigatório'),
       });
 
       await schema.validate(data, {
@@ -100,20 +108,29 @@ export default function FormMember(props: any) {
           })
       }
 
+    } catch (error) {
 
+      console.log(error.message)
 
-    } catch (err) {
+      // if (err instanceof Yup.ValidationError) {
+      //   let errorMessages = {}
 
-      console.log(err.message)
+      //   err.inner.forEach(error => errorMessages = {
+      //     ...errorMessages,
+      //     [`${err.path}`]: err.message
+      //   });
+      //   formRef.current.setErrors(errorMessages);
+      // }
 
-      if (err instanceof Yup.ValidationError) {
+      if(error instanceof Yup.ValidationError){
         let errorMessages = {}
 
-        err.inner.forEach(error => errorMessages = {
+        error.inner.forEach(err => errorMessages = {
           ...errorMessages,
-          [`${err.path}`]: err.message
+          [`${err.path}`] : err.message
         });
-        formRef.current.setErrors(errorMessages);
+
+        formRef.current?.setErrors(errorMessages)
       }
       console.log(data)
     }
@@ -136,27 +153,22 @@ export default function FormMember(props: any) {
     fetchPerfil()
   }, [])
 
-
-
   return (
-    <Container>
-      <ContainerHeader>
-        <h2>Adicionar Novo Membro</h2>
-      </ContainerHeader>
+    <Container ref={formRef} initialData={props.data} onSubmit={handleSubmit}>
+        
+        <h2>{props.data ? 'Editar membro' : 'Adicionar membro'}</h2>
 
-      <ContainerForm>
-        <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-          <Input placeholder="E-mail" type="email" name="email" />
-          <Input placeholder="Nome" type="text" name="name" />
-          <label>Perfil</label>
-          <Select name="profile">
-            {profileList.map((profile: IProfileProps) => (
-              <option value={profile.name}>{profile.description}</option>
-            ))}
-          </Select>
-          <Button>Adicionar</Button>
-        </Form>
-      </ContainerForm>
+        <Input placeholder="E-mail" type="email" name="email" />
+        <Input placeholder="Nome" type="text" name="name" />
+        <Select name="profile">
+          <option value={``}>SELECIONE SEU PERFIL</option>
+          {profileList.map((profile: IProfileProps) => (
+            <option value={profile.name}>{profile.description}</option>
+          ))}
+        </Select>
+
+        <SecondaryButton label="Adicionar" />
+
     </Container>
   );
 }

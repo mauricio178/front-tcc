@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-    padding: 15px;
-    text-align: center;
-`;
+interface IContainerProps{
+    error?: string
+  }
+  
 
-export const Select = styled.select`
-    font-size: 14px;
-    padding: 10px 0px;
-    border-radius: 4px;
-    font-family: Century Gothic;
+export const Container = styled.div<IContainerProps>`
+    font-weight: 400;
+    padding: .25rem 0;
+
+    select {
+        border-radius: 0.25rem;
+        border: ${({ error }) => error ? '3px solid red' : 'none' };
+        width: 100%;
+        height: 3rem;
+        padding: 0 1.0rem;
+    }
 `;

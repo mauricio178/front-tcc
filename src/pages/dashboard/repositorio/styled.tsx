@@ -22,7 +22,7 @@ export const ContainerTitle = styled.div`
   h2 {
     color: white;
     font-size: 20px;
-    font-family: Century Gothic;
+    ;
   }
 `;
 
@@ -55,7 +55,7 @@ export const Div = styled.div`
   p{
     color: black;
     font-size: 14px;
-    font-family: Century Gothic;
+    ;
 
   }
 `;
@@ -71,7 +71,7 @@ export const DivFixed = styled.div`
   p{
     color: black;
     font-size: 14px;
-    font-family: Century Gothic;
+    ;
 
 
   }

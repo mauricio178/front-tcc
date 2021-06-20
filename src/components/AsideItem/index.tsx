@@ -11,7 +11,7 @@ const AsideItem: React.FC<IAsideItem> = ({ icon, label, path }) => {
   return (
     <Link to={path}>
         {icon}
-        <h3> {label} </h3>
+        <h4> {label} </h4>
     </Link>
   );
 }

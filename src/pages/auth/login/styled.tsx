@@ -14,7 +14,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-font-family: Century Gothic;
+;
 color: #2F4F4F;
 `;
 
@@ -23,7 +23,7 @@ border: 1px solid #25692A;
 color: white;
 border-radius: 3px;
 cursor: pointer;
-font-family: Century Gothic;
+;
 font-weight: bold;
 font-size: 12px;
 background-color: 	#FF4500;
@@ -36,7 +36,6 @@ margin-bottom: 1em;
 export const Button2 = styled.button`
   padding: 1px;
   cursor: pointer; 
-  font-family:Century Gothic;
   font-size: 13px;
   border: 1px solid #008080;
   border-radius: 5px;

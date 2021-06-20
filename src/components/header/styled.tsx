@@ -1,12 +1,21 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 10px 12px;
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end;
   background: transparent;
-  /* max-width: 80vw; */
+  /* width: 100%; */
+  /* max-width: 1120px; */
+  
+  /* align-self: flex-start; */
+  margin: 2rem ;
+
+  h2 {
+    font-weight: 400;
+  }
 
   header {
     max-height: 30px;

@@ -13,7 +13,7 @@ export const Container = styled.div`
   opacity: 0.8;
   color: #272727;
   font-size: 17px;
-  font-family: Centry Gotic;
+  
   box-shadow: 0 0 1px;
   :hover{
     opacity: 1;

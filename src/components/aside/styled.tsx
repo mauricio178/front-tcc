@@ -3,24 +3,35 @@
   export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to bottom, #007070, #0070707f); ;
+    background: var(--background);
 
     header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 20px;
-      background-color: #fff;
+      /* background-color: #fff; */
+      img {
+        width: 50%;
+        padding: 2rem;
+      }
     }
 
     > a {
 
-      padding: 10px ; 
+      padding: 8px ; 
       display: flex;
       align-items: center;
       flex-direction: row;
-      margin-left: 20px;
-      margin-top: 20px;
+      margin: 10px 16px;
 
-      h3 {
-        margin-left: 16px;
+      svg {
+        color: var(--seconday-color);
+        font-size: 32px;
+      }
+
+      h4 {
+        margin-left: 8px;
       }
     }
   `;

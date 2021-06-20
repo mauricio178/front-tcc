@@ -14,13 +14,13 @@ margin-top: 1em;
 
 export const Lbl = styled.p`
   margin: 1em 5em;
-  font-family: Century Gothic;
+  ;
   font-size: 10px;
 `;
 
 export const Title = styled.h1`
 margin-left: 65px;
-font-family: Century Gothic;
+;
 color: #2F4F4F;
 font-size: 20px;
 `;
@@ -28,7 +28,7 @@ font-size: 20px;
 export const Legend = styled.p`
 margin: 2em;
 margin-top: 5px;
-font-family: Century Gothic;
+;
 color: 	#B0C4DE;
 `;
 
@@ -38,7 +38,7 @@ border: 1px solid #25692A;
 color: white;
 border-radius: 3px;
 cursor:pointer;
-font-family: Century Gothic;
+;
 font-weight: bold;
 font-size: 12px;
 background-color: 	#FF4500;
@@ -50,7 +50,7 @@ margin-bottom: 2px;
 
 export const Button2 = styled.button`
   padding: 5px;
-  font-family: Century Gothic;
+  ;
   font-weight:bold;
   background-color: Transparent;
   border: 1px solid 	#B0C4DE;

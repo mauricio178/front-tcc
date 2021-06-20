@@ -1,10 +1,12 @@
 import { FiUserPlus, FiUsers, FiSearch } from 'react-icons/fi';
 import { useCallback, useEffect, useState } from 'react'
-import { Container, ContainerTitle, ContainerDiv } from './styled'
+import { Container, ContainerTitle, ContainerDiv, Content } from './styled'
 import { CardUser } from '../../../../components/CardUser'
 import { useHistory } from 'react-router-dom';
 import { api } from '../../../../services/api';
-
+import { useRouter } from '../../../../hooks/RouterProvider';
+import { PrimaryButton } from '../../../../components/PrimaryButton';
+import { useFormMember } from '../../../../hooks/FormMemberProvider';
 
 interface IMemberProps {
   email: string;
@@ -12,11 +14,9 @@ interface IMemberProps {
   profile: string;
 }
 
-
-
-
 export default function Listagem(props: any) {
-
+  const { handleOpenModal } = useFormMember()
+  const { handleSetHeaderTitle } = useRouter()
   const [memberList, setMemberList] = useState([]);
 
   async function fetchMember() {
@@ -27,32 +27,41 @@ export default function Listagem(props: any) {
   }
   useEffect(() => {
     fetchMember()
+    handleSetHeaderTitle('Equipe')
   }, [])
 
   const history = useHistory()
 
   const handleGoToFormMember = useCallback(() => {
-    history.push('/form-member')
+    // history.push('/form-member')
   }, [history])
 
   return (
-
     <Container>
-      <ContainerTitle>
-        <h2><FiUsers size="25"></FiUsers>  Usuários / Equipe</h2>
-        <div>
-          <input placeholder="Search User / Team" />
-          <button>
-            <FiSearch size="15"></FiSearch>
-          </button>
-        </div>
-        <button onClick={handleGoToFormMember}><FiUserPlus size={16} />  Novo Membro</button>
-      </ContainerTitle>
-      <ContainerDiv>
-          {memberList.map((member: IMemberProps) => (
-            <CardUser member={member} fetchMember={fetchMember} />
-          ))}
-      </ContainerDiv>
+      <Content>
+
+        <ContainerTitle>
+          <p />          
+          <PrimaryButton onClick={handleOpenModal} label="+ Novo Membro"> </PrimaryButton>
+        </ContainerTitle>
+        <ContainerDiv>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Ações</th>                
+              </tr>
+            </thead>
+            <tbody>
+              {memberList.map((member: IMemberProps) => (
+                <CardUser member={member} fetchMember={fetchMember} />
+                ))}
+            </tbody>
+          </table>
+        </ContainerDiv>
+      </Content>
     </Container>
   );
 }

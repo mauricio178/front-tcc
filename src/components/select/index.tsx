@@ -1,6 +1,6 @@
 import { useField } from '@unform/core';
 import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
-import { Container, Select } from './styled';
+import { Container } from './styled';
 
 interface InputProps extends InputHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -19,10 +19,11 @@ const SelectInput: React.FC<InputProps> = ({ name, placeholder, children, ...res
   }, [fieldName, registerField])
 
   return(
-    <Container>
-      <Select placeholder={placeholder} ref={inputRef} defaultValue={defaultValue} {...rest}>
+    <Container error={error}>
+      { error && <span style={{color: '#f00'}}>{error}</span>}
+      <select placeholder={placeholder} ref={inputRef} defaultValue={defaultValue} {...rest}>
         {children}
-      </Select>
+      </select>
     </Container>
   );
 }
