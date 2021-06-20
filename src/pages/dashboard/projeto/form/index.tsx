@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Container, ContainerForm, ContainerHeader, Button } from './styled'
+import { Container, ContainerForm, ContainerHeader, Button, DivProject, DivClient, DivForm, DivButton } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
 import { Form } from '@unform/web';
 import Select from '../../../../components/select';
+import { FiCornerDownLeft, FiFilePlus, FiPlus } from 'react-icons/fi';
 
 interface IMemberProps {
   name: string;
@@ -143,39 +144,49 @@ export default function FormProjeto(props: any) {
   return (
     <Container>
       <ContainerHeader>
-        <h2>Adicionar Novo Projeto</h2>
+        <h2><FiFilePlus size="25"></FiFilePlus> Adicionar Novo Projeto</h2>
+        <button onClick={handleGoToDashboard}><FiCornerDownLeft size="16"></FiCornerDownLeft>Voltar</button>
       </ContainerHeader>
 
       <ContainerForm>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-          <div>
-            <Input placeholder="Nome do Projeto" type="text" name="name" />
-            <Input placeholder="Previsão de Inicio" type="date" name="prev_inicio" />
-            <Input placeholder="Previsão de Fim" type="date" name="prev_fim" />
-            <Input placeholder="Custo Estimado" type="text" name="custo" />
-          </div>
-          <div>
-            <label>Vendedor</label>
-            <Select name="member">
-              {memberList.map((member: IMemberProps) => (
-                <option value={member.name}>{member.name}</option>
-              ))}
-            </Select>
-            <label>Gerente</label>
-            <Select name="member">
-              {memberList.map((member: IMemberProps) => (
-                <option value={member.name}>{member.name}</option>
-              ))}
-            </Select>
-          </div>
-          <div>
-            <Input placeholder="Cliente" type="text" name="cliente" />
-            <Input placeholder="Nome" type="text" name="name" />
-            <Input placeholder="Pós-Venda" type="text" name="pos_venda" />
-            <Input placeholder="Descrição" type="text" name="descricao" />
-          </div>
-
-          <Button>Adicionar</Button>
+          <DivForm>
+            <DivProject>
+              <label>Nome do Projeto</label>
+              <Input type="text" name="name" />
+              <label>Previsão de Inicio</label>
+              <Input type="date" name="prev_inicio" />
+              <label>E-mail Cliente</label>
+              <Input placeholder="ex@ex.com" type="text" name="name" />
+              <label>Custo Estimado</label>
+              <Input placeholder="R$" type="text" name="custo" />
+              <label>Gerente</label>
+              <Select name="member">
+                {memberList.map((member: IMemberProps) => (
+                  <option value={member.name}>{member.name}</option>
+                ))}
+              </Select>
+            </DivProject>
+            <DivClient>
+              <label>Cliente</label>
+              <Input type="text" name="cliente" />
+              <label>Previsão de Finalização</label>
+              <Input type="date" name="prev_fim" />
+              <label>Pós-Venda</label>
+              <Input type="text" name="pos_venda" />
+              <label>Detalhes refente</label>
+              <Input type="text" name="descricao" />
+              <label>Vendedor</label>
+              <Select name="member">
+                {memberList.map((member: IMemberProps) => (
+                  <option value={member.name}>{member.name}</option>
+                ))}
+              </Select>
+            </DivClient>
+          </DivForm>
+          <DivButton>
+            <Button><FiPlus size="16"></FiPlus>Adicionar</Button>
+          </DivButton>
         </Form>
       </ContainerForm>
     </Container>

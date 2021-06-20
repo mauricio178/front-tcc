@@ -5,15 +5,17 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: transparent;
+  background: #373233;
   /* max-width: 80vw; */
 
   header {
     max-height: 30px;
+      background: transparent;
 
     img {
-      max-height: 60px;
-      max-width: 70px;
+      max-height: 70px;
+      max-width: 80px;
+
     }
   }
 
@@ -21,6 +23,7 @@ export const Container = styled.div`
     display: flex;
     align-items  : center;
     justify-content: center;
+    color: white;
 
     * {
       margin: 0 6px;

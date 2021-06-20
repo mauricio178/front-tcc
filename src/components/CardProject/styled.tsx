@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 
-  background: white;
+  background: #ffffff;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border-radius: 3px;
+  border-radius: 7px;
   align-items: center;
   margin: 4px;
   height: 8vh;
@@ -23,56 +23,58 @@ export const Container = styled.div`
 `;
 
 export const DivIcon = styled.div`
-  margin-left: 10px;
-
+  margin-left: 8px;
   width: 5%;
 `;
 
 export const DivId = styled.div`
-
   width: 5%;
 `;
 
 export const DivName = styled.div`
-
   width: 20%;
 `;
-
 
 export const DivGerente = styled.div`
-  width: 20%;
-
-`;
-
-export const DivDate = styled.div`
   width: 15%;
 `;
+
+export const DivVendedor = styled.div`
+  width: 15%;
+`;
+
+export const DivDateInicio = styled.div`
+  width: 15%;
+`;
+
+export const DivDateFim = styled.div`
+  width: 15%;
+`;
+
 
 export const DivControls = styled.div`
   width: 15%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 100%;
-  background: white;
+
 
   button{
+    display: flex;
+  justify-content: center;
+  align-items: center;
     cursor: pointer;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 2px;
-    border: transparent;
-    color: #168853;
-    background: white;
-    font-size: 14px;
-    svg {
-      background: white;
-    }
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid transparent;
+    color: #484041;
+    font-size: 16px;
+    background: transparent;
+    border-radius: 20px;
     :hover {
       transition: 0.8s;
-      border-radius: 4px;
-      color: #00301b;
-      font-size: 15px;
+      color: #000000;
+      border: 1px solid #484041;
     }
 
   }

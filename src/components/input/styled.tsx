@@ -5,20 +5,15 @@ export const ErrorMesage = styled.span`
 `;
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 7px;
-  margin-top: 12px;
 `;
 
 export const InputText = styled.input`
   outline: none !important;
-  border: 0px solid;
-  box-shadow: 0 0 3px #000000;  
-  color: 	#363636;
-  padding: 5px 20px;
-  border-radius: 3px;
-  font-size: 12px;
-  font-family: Century Gothic;
+  border: 0px solid black;
+  box-shadow: 0 0 2px #000000;  
+  color: 	#212121;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: sans-serif;
 `;

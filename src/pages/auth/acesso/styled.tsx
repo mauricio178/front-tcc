@@ -19,48 +19,45 @@ export const Lbl = styled.p`
 `;
 
 export const Title = styled.h1`
-margin-left: 65px;
-font-family: Century Gothic;
-color: #2F4F4F;
-font-size: 20px;
+font-family: sans-serif;
+font-weight: bold;
+color: #174168;
+margin-top: 1em;
+font-size: 25px;
 `;
-
-export const Legend = styled.p`
-margin: 2em;
-margin-top: 5px;
-font-family: Century Gothic;
-color: 	#B0C4DE;
-`;
-
 
 export const Button = styled.button`
-border: 1px solid #25692A;
-color: white;
+border: 1px solid transparent;
+color: #dadada;
 border-radius: 3px;
-cursor:pointer;
+cursor: pointer;
 font-family: Century Gothic;
 font-weight: bold;
 font-size: 12px;
-background-color: 	#FF4500;
-padding: 5px 48px;
-margin-left: 79px;
-margin-top: 1.5em;
+background-color: 	#404083;
+padding: 8px 85px;
+margin-top: 2em;
 margin-bottom: 2px;
-`;
-
-export const Button2 = styled.button`
-  padding: 5px;
-  font-family: Century Gothic;
-  font-weight:bold;
-  background-color: Transparent;
-  border: 1px solid 	#B0C4DE;
-  color: 	#B0C4DE;
-  margin-left: 2em;
-    
+  :hover{
+    background-color: 	#23237c;
+    color: white;
+    transition: 0.7s;
+  }
 `;
 
 export const ContainerForm = styled.div`
-  margin: 2em 5em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  form {
+    margin-top: 2em;
+
+    input {
+      font-family: sans-serif;
+    }
+  }
 `;
 
 

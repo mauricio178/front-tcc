@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Container, ContainerForm, ContainerHeader, Button } from './styled'
+import { Container, ContainerForm, Button } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -8,6 +8,8 @@ import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
 import { Form } from '@unform/web';
 import Select from '../../../../components/select';
+import { ContainerTitle } from '../../styled';
+import { FiCornerDownLeft, FiPlus, FiUserPlus } from 'react-icons/fi';
 
 interface IProfileProps {
   name: string;
@@ -140,21 +142,24 @@ export default function FormMember(props: any) {
 
   return (
     <Container>
-      <ContainerHeader>
-        <h2>Adicionar Novo Membro</h2>
-      </ContainerHeader>
+      <ContainerTitle>
+        <h2><FiUserPlus/>  Adicionar Novo Membro</h2>
+        <button onClick={handleGoToListagem}><FiCornerDownLeft size="16"></FiCornerDownLeft>Voltar</button>
+      </ContainerTitle>
 
       <ContainerForm>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-          <Input placeholder="E-mail" type="email" name="email" />
-          <Input placeholder="Nome" type="text" name="name" />
+          <label>E-mail</label>
+          <Input type="email" name="email" />
+          <label>Nome Completo</label>
+          <Input type="text" name="name" />
           <label>Perfil</label>
           <Select name="profile">
             {profileList.map((profile: IProfileProps) => (
               <option value={profile.name}>{profile.description}</option>
             ))}
           </Select>
-          <Button>Adicionar</Button>
+          <Button><FiPlus size="16"/>  Adicionar</Button>
         </Form>
       </ContainerForm>
     </Container>

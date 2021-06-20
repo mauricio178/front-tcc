@@ -4,6 +4,7 @@ import { Container, ContainerTitle, ContainerDiv } from './styled'
 import { CardUser } from '../../../../components/CardUser'
 import { useHistory } from 'react-router-dom';
 import { api } from '../../../../services/api';
+import { TitleCard } from '../../../../components/TitleCardUser';
 
 
 interface IMemberProps {
@@ -49,6 +50,7 @@ export default function Listagem(props: any) {
         <button onClick={handleGoToFormMember}><FiUserPlus size={16} />  Novo Membro</button>
       </ContainerTitle>
       <ContainerDiv>
+        <TitleCard/>
           {memberList.map((member: IMemberProps) => (
             <CardUser member={member} fetchMember={fetchMember} />
           ))}

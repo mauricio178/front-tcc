@@ -1,9 +1,10 @@
 
 import { Container, ContainerTitle, ContainerDiv } from './styled'
-import { FiGrid, FiFolderPlus, FiSearch } from 'react-icons/fi'
+import { FiMap, FiFolderPlus, FiSearch } from 'react-icons/fi'
 import { CardProject } from '../../components/CardProject';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { TitleCard } from '../../components/TitleCardProject';
 
 
 export default function Dashboard(props: any) {
@@ -18,7 +19,7 @@ export default function Dashboard(props: any) {
   return (
     <Container>
       <ContainerTitle>
-        <h2><FiGrid size="25"></FiGrid>  DashBoard</h2>
+        <h2><FiMap size="25"></FiMap> Projetos</h2>
         <div>
           <input placeholder="Search" />
           <button>
@@ -26,10 +27,16 @@ export default function Dashboard(props: any) {
           </button>
         </div>
         <button onClick={handleGoToFormProject}>
-          <FiFolderPlus size="16"></FiFolderPlus> Novo Projeto
+          <FiFolderPlus size="16"></FiFolderPlus>. Novo Projeto
         </button>
       </ContainerTitle>
       <ContainerDiv>
+        <TitleCard/>
+        <CardProject/>
+        <CardProject/>
+        <CardProject/>
+        <CardProject/>
+        <CardProject/>
         <CardProject/>
       </ContainerDiv>
 

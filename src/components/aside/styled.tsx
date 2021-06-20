@@ -3,7 +3,7 @@
   export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to bottom, #007070, #0070707f); ;
+    background: #373233;
 
     header {
       margin-bottom: 20px;
@@ -17,8 +17,7 @@
       align-items: center;
       flex-direction: row;
       margin-left: 20px;
-      margin-top: 20px;
-
+      margin-top: 1em;
       h3 {
         margin-left: 16px;
       }

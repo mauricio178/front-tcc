@@ -7,8 +7,8 @@ export const Container = styled.div`
   flex-direction: row;
   border-radius: 4px;
   align-items: center;
-  margin: 3px;
-  height: 7vh;
+  margin: 4px;
+  height: 8vh;
   opacity: 0.8;
   color: #272727;
   font-size: 17px;
@@ -54,17 +54,17 @@ export const DivControls = styled.div`
 
   button{
     cursor: pointer;
-    padding: 5px;
+    padding: 3px;
     margin: 5px;
-    border-radius: 2px;
-    border: transparent;
+    border: 1px solid transparent; 
     background: transparent;
-    color: #033f2a;
+    color: #3a3a3a;
+    border-radius: 8px;
     :hover {
-      background: #014f3e;
       transition: 0.8s;
-      border-radius: 4px;
-      color: #75f3ce
+      color: #000000;
+      border: 1px solid #3a3a3a; 
+      box-shadow: 0 0 2px;
     }
 
   }
