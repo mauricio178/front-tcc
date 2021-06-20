@@ -2,7 +2,6 @@ import React, { useContext, createContext, useState, useCallback } from 'react';
 import Modal from 'react-modal'
 import { FormMember } from '../pages/dashboard/member/form';
 
-
 interface FormMemberContextData {
   handleOpenModal(memberData?: IMemberInterface): void;
   handleCloseModal(): void;
