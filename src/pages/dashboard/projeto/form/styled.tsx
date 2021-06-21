@@ -13,8 +13,8 @@ export const Container = styled(Form)`
 
 export const Title = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 export const DivForm = styled.div`

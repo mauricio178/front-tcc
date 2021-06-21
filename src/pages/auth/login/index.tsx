@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState, } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Button, Title, ContainerForm, Img, Button2 } from './styled'
+import { ContainerForm, Img } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { api } from '../../../services/api'
 import { useLoader } from '../../../hooks/LoaderProvider'
 import { useAuth } from '../../../hooks/AuthProvider'
+import { SecondaryButton } from '../../../components/SecondaryButton'
 
 
 
@@ -81,13 +82,12 @@ export default function Login() {
   return (
     <AuthDefaultBackground isLogin={true}>
       <Img><img src="./man.png" alt="imagem"/></Img>
-    
       <ContainerForm>
-        <Title>Sign In</Title>
+        <h2>Sign In</h2>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
           <Input placeholder="E-mail" type="email" name="email"/>
           <Input placeholder="Senha" type="password" name="password" />
-          <Button type="submit">Log In</Button>
+          <SecondaryButton type="submit" label="Entrar"/>
         </Form>
       </ContainerForm>
     </AuthDefaultBackground>

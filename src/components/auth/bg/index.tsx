@@ -1,6 +1,6 @@
 import React, { useRef, } from 'react'
 import { PrimaryButton } from '../../PrimaryButton';
-import { Container, ContainerForms, ContainerFormLeft, ContainerFormRigth, Legend, Title2, Button2, } from './styled'
+import { Container, ContainerForm } from './styled'
 
 interface AuthDefaultBackgroundInterface{
   children: React.ReactNode;
@@ -11,30 +11,9 @@ interface AuthDefaultBackgroundInterface{
 function AuthDefaultBackground({ children, isLogin }: AuthDefaultBackgroundInterface){
   return (
     <Container className="App"> 
-      <ContainerForms>
-        <ContainerFormLeft >
+        <ContainerForm>
           {children}
-        </ContainerFormLeft>
-
-        <ContainerFormRigth background-image="./img1-login.png">
-        <Title2>
-            Bem-Vindo {isLogin && "de volta"} ao Manager G!
-          </Title2>
-          <Legend>
-            <p>___________________________________________________</p>
-            <br></br>
-            <p>- Assuma o controle de seus projetos, organizando tarefas e gerenciando recursos.</p>
-            <br></br>
-            <p>- Pensado principalmente para empresas que procuram uma maneira simples de gerenciar seus
-            projetos baseado nas premissas do PMBOK (6ª Ed.)
-            </p>
-            <br></br>
-            <p>___________________________________________________</p>
-          </Legend>
-          <PrimaryButton type="submit" label="Ler mais..." />     
-        </ContainerFormRigth>
-
-      </ContainerForms>
+        </ContainerForm>
     </Container>
   );
 }

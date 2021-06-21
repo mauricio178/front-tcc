@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Button, ContainerForm, ContainerFormLeft, Title, Img } from './styled'
+import { ContainerForm, Img } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useLoader } from '../../../hooks/LoaderProvider'
 import { api } from '../../../services/api'
+import { SecondaryButton } from '../../../components/SecondaryButton'
 
 
 interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
@@ -99,21 +100,17 @@ export default function Registro(props: any) {
 
   return (
     <AuthDefaultBackground>
-
-        <ContainerFormLeft >
         <Img><img src="./man.png" alt="imagem"></img></Img>
           <ContainerForm>
-            <Title>Cadastro Pessoal</Title>
+            <h2>Cadastro Pessoal</h2>
             <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
               <Input placeholder="E-mail" type="email" name="email" disabled/>
               <Input placeholder="Nome" type="text" name="name" />
-              <Input placeholder="Password" type="password" name="password" />
+              <Input placeholder="Senha" type="password" name="password" />
               <Input placeholder="Código de Acesso" type="text" name="acess_code" />
-              <Button type="submit"> Enviar </Button>
+              <SecondaryButton type="submit" label="Entrar"/>
             </Form>
           </ContainerForm>
-        </ContainerFormLeft>
-
     </AuthDefaultBackground>
   );
   }
