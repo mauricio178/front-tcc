@@ -61,6 +61,11 @@ export const Button2 = styled.button`
 
 export const ContainerForm = styled.div`
   margin: 2em 5em;
+
+  h2 {
+    display:flex;
+    justify-content: center;
+  }
 `;
 
 

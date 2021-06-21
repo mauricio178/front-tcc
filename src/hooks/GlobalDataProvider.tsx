@@ -16,13 +16,12 @@ interface IProfileProps {
 interface IProjectProps {
   project: {
     name: string,
-    descricao: string;
-    vendedor: string;
-    pos_venda: string;
-    custo: string;
-    prev_inicio: string;
-    prev_fim: string;
-    cliente: string;
+    description: string;
+    seller_id: string;
+    post_seller_id: string;
+    cost: string;
+    prediction_start: Date;
+    prediction_end: Date;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, } from 'react'
 import { Container } from './styled'
-import { FiFile, FiHome, FiUsers } from 'react-icons/fi';
+import { FiFile, FiMap, FiUsers } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
 import AsideItem from '../AsideItem';
 import logoImage from "../../assets/logo.png"
@@ -23,15 +23,9 @@ export const Aside = ({ renderAside }: IAside) => {
       </header>      
 
       <AsideItem 
-        icon={<FiHome />}
+        icon={<FiMap />}
         path="/dashboard"
-        label="Home"
-      />
-      
-      <AsideItem 
-        icon={<FiFile />}
-        path="/repositorio"
-        label="Repositório"
+        label="Projetos"
       />
       
       <AsideItem 

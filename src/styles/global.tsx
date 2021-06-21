@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
     :root {
-        --background: #354b83;
+        --background: #338D8C;
         --background-ligth: #34B6B4;
 
         --secondary-color: #E9E8E8;
-        --title-color: #7B7979;
+        --title-color: #555555;
         --text-color: #7c7c7c;
     }
 
@@ -71,7 +71,8 @@ export default createGlobalStyle`
 
     /* mouse over link */
     a:hover {
-        color:#fff;
+        transition: 0.8s;
+        margin-left: 20px;
     }
 
     /* selected link */

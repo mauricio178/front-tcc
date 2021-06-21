@@ -1,7 +1,6 @@
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { HomeContainer } from '../components/home/HomeContainer';
-import Repositorio from '../pages/dashboard/repositorio';
 import Dashboard from '../pages/dashboard';
 import Listagem from '../pages/dashboard/member/listagem';
 import FormProject from '../pages/dashboard/projeto/form';
@@ -17,9 +16,7 @@ function HomeRoutes(){
                 {/* TODO, Maurício - Adicionar rotas autenticadas aqui */}
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/listagem" exact component={Listagem} />
-                <Route path="/repositorio" exact component={Repositorio} />
-                <Route path="/dashboard" exact component={Projects} />
-                
+                <Route path="/dashboard" exact component={Projects} /> 
                 {/* <Route path="/form-member" exact component={FormMember} /> */}
                 <Route path="/form-project" exact component={FormProject} />
                 

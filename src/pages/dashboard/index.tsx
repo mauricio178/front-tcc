@@ -12,6 +12,7 @@ import { Content } from './member/listagem/styled';
 import { CardProject } from '../../components/CardProject';
 
 interface IProjectProps {
+    id: string;
     name: string;
     description: string;
     seller_id: string;
@@ -55,11 +56,7 @@ export default function Projects(props: any) {
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Vendedor</th>
                 <th>Gerente</th>
-                <th>Custo</th>
-                <th>Previsão Inicio</th>
-                <th>Previsão Fim</th>
                 <th>Descrição</th>
               </tr>
             </thead>

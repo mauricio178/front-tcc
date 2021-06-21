@@ -45,7 +45,7 @@ interface IAxiosError {
 
 export default function FormProject(props: any) {
 
-  const { handleReloadProjectList, handleReloadProfileList, profileList, memberList } = useGlobalData()
+  const { handleReloadProjectList, handleReloadMemberList, memberList } = useGlobalData()
   const { data: formData, handleCloseModal } = useFormModal()
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
@@ -75,7 +75,7 @@ export default function FormProject(props: any) {
       toggleLoading()
 
       if (edit) {
-        api.put("project", data)
+        api.put(`project/${formData.id}`, data)
           .then(res => {
             console.log(res)
             Toast.fire({
@@ -83,13 +83,13 @@ export default function FormProject(props: any) {
               title: `Projeto editado com sucesso`
             })
             handleReloadProjectList()
+            handleCloseModal()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
-            handleCloseModal()
 
           })
       } else {
@@ -101,13 +101,13 @@ export default function FormProject(props: any) {
               icon: 'success',
               title: `Projeto adicionado com sucesso`
             })
+            handleCloseModal()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
-            handleCloseModal()
           })
       }
 
@@ -129,12 +129,8 @@ export default function FormProject(props: any) {
     }
   }
 
-  async function fetchPerfil() {
-    handleReloadProfileList()
-  }
-
   useEffect(() => {
-    fetchPerfil()
+    handleReloadMemberList()
   }, [])
 
 
@@ -150,9 +146,9 @@ export default function FormProject(props: any) {
           <Input placeholder="Nome do Projeto" type="text" name="name" />
           <Input placeholder="Previsão de Inicio" type="date" name="prediction_start" />
           <Input placeholder="Previsão de Fim" type="date" name="prediction_end" />
-          <Input placeholder="Custo Estimado" type="text" name="cost" />
           </div>
           <div>
+          <Input placeholder="Custo Estimado" type="text" name="cost" />
           <Select name="seller_id">
           <option value={``}>Gerente/Responsável</option>
             {memberList.map((member: IMemberProps) => (
@@ -165,9 +161,9 @@ export default function FormProject(props: any) {
               <option value={member.name}>{member.name}</option>
             ))}
           </Select>
-          <Input placeholder="Descrição" type="text" name="description" />
         </div>
       </DivForm>
+          <Input placeholder="Descrição" type="text" name="description" />
 
       <DivButton>
         <SecondaryButton label="Adicionar" />

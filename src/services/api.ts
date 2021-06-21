@@ -16,7 +16,7 @@ api.interceptors.request.use(function (config) {
     method: String(method)
   })
 
-  console.log({PERMITED})
+  // console.log({PERMITED})
 
   // if(!PERMITED) throw new Error("OPERATION NOT PERMITTED!");
 

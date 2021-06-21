@@ -8,6 +8,7 @@ import { api } from '../../services/api';
 import { PrimaryButton } from '../PrimaryButton';
 
 interface IProjectInterface {
+  id: string;
   name: string;
   description: string;
   seller_id: string;
@@ -39,7 +40,7 @@ export const CardProject = ({ project, fetchProject }: CardProjectProps) => {
     }).then(async (result: { isConfirmed: any; }) => {
 
       if (result.isConfirmed) {
-        await api.delete(`project/${project.name}`)
+        await api.delete(`project/${project.id}`)
         Toast.fire({
           icon: 'success',
           title: `Projeto Deletado com sucesso`
@@ -47,24 +48,19 @@ export const CardProject = ({ project, fetchProject }: CardProjectProps) => {
         fetchProject()
       }
     })
-  }, [])
+  }, [fetchProject, project.id])
 
   return (
-    <tr>
-      <td>{project.name}</td>
-      <td>{project.seller_id}</td>
-      <td>{project.post_seller_id}</td>
-      <td>{project.cost}</td>
-      <td>{project.prediction_start}</td>
-      <td>{project.prediction_end}</td>
-      <td>{project.description}</td>
-      <td>
-        <PrimaryButton bg="#ffe420" onClick={handleOpenModalEdit} icon={<FiEdit color="#555" />} />
-        &nbsp; &nbsp;
-        <PrimaryButton bg="#ca2f2f" onClick={handleDeleteProject} icon={<FiTrash2 />} />
-
-      </td>
-    </tr>
+      <tr>
+        <td>{project.name}</td>
+        <td>{project.post_seller_id}</td>
+        <td>{project.description}</td>
+        <td>
+          <PrimaryButton bg="#ffe420" onClick={handleOpenModalEdit} icon={<FiEdit color="#555" />} />
+          &nbsp; &nbsp;
+          <PrimaryButton bg="#ca2f2f" onClick={handleDeleteProject} icon={<FiTrash2 />} />
+        </td>
+      </tr>
   )
 
 }
