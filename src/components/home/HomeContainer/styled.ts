@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   /* max-width: 960px; */
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
 
   object-fit: contain;

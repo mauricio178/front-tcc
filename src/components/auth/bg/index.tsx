@@ -1,4 +1,5 @@
 import React, { useRef, } from 'react'
+import { PrimaryButton } from '../../PrimaryButton';
 import { Container, ContainerForms, ContainerFormLeft, ContainerFormRigth, Legend, Title2, Button2, } from './styled'
 
 interface AuthDefaultBackgroundInterface{
@@ -30,9 +31,7 @@ function AuthDefaultBackground({ children, isLogin }: AuthDefaultBackgroundInter
             <br></br>
             <p>___________________________________________________</p>
           </Legend>
-          <Button2 type="submit">
-            Ler Mais...
-          </Button2>     
+          <PrimaryButton type="submit" label="Ler mais..." />     
         </ContainerFormRigth>
 
       </ContainerForms>

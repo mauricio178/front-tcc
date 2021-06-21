@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background: var(--background);
+    height: 100vh;
 
     header {
       display: flex;
@@ -12,8 +13,10 @@
       margin-bottom: 20px;
       /* background-color: #fff; */
       img {
-        width: 50%;
-        padding: 2rem;
+        width: 70%;
+        padding: 0.5rem;
+        margin-bottom: 2em;
+        margin-top: 1em;
       }
     }
 

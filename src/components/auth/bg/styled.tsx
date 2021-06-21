@@ -29,8 +29,7 @@ export const Lbl = styled.p`
   
 `;
 
-export const Legend = styled.p`
-margin: 2em;
+export const Legend = styled.p` 
 margin-top: 5px;
 
 color: 	#B0C4DE;
@@ -78,6 +77,8 @@ float: left;
 align-items: center;
 background-image: url("img1-login.png");
 border-radius: 0px 15px 15px 0px;
+padding: 2em;
+
 `;
 
 export const ContainerFormLeft = styled.div`

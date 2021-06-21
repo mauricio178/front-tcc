@@ -1,38 +1,73 @@
-
+import { FiUserPlus, FiUsers, FiSearch } from 'react-icons/fi';
+import { useCallback, useEffect, useState } from 'react'
 import { Container, ContainerTitle, ContainerDiv } from './styled'
-import { FiGrid, FiFolderPlus, FiSearch } from 'react-icons/fi'
-import { CardProject } from '../../components/CardProject';
-import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { api } from '../../services/api';
+import { useRouter } from '../../hooks/RouterProvider';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { useFormModal } from '../../hooks/FormModalProvider';
+import { useGlobalData } from '../../hooks/GlobalDataProvider';
+import FormProject, {  } from './projeto/form';
+import { Content } from './member/listagem/styled';
+import { CardProject } from '../../components/CardProject';
 
+interface IProjectProps {
+    id: string;
+    name: string;
+    description: string;
+    seller_id: string;
+    post_seller_id: string;
+    cost: string;
+    prediction_start: string;
+    prediction_end: string;
+}
 
-export default function Dashboard(props: any) {
+export default function Projects(props: any) {
+  const { handleOpenModal, handlesSetFormComponent } = useFormModal()
+  const { handleReloadProjectList, projectList }: any = useGlobalData()
+  const { handleSetHeaderTitle } = useRouter()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function fetchProject() {
+    handleReloadProjectList()
+  }
+
+  useEffect(() => {
+    fetchProject()
+    handleSetHeaderTitle('Projetos')
+  }, [fetchProject, handleSetHeaderTitle])
 
   const history = useHistory()
 
-  
   const handleGoToFormProject = useCallback(() => {
-    history.push('/form-project')
+    handlesSetFormComponent(<FormProject />)
   }, [history])
 
   return (
     <Container>
-      <ContainerTitle>
-        <h2><FiGrid size="25"></FiGrid>  DashBoard</h2>
-        <div>
-          <input placeholder="Search" />
-          <button>
-            <FiSearch size="15"></FiSearch>
-          </button>
-        </div>
-        <button onClick={handleGoToFormProject}>
-          <FiFolderPlus size="16"></FiFolderPlus> Novo Projeto
-        </button>
-      </ContainerTitle>
-      <ContainerDiv>
-        <CardProject/>
-      </ContainerDiv>
+      <Content>
 
+        <ContainerTitle>
+          <p />          
+          <PrimaryButton onClick={handleGoToFormProject} label="+ Novo Projeto"> </PrimaryButton>
+        </ContainerTitle>
+        <ContainerDiv>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Gerente</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projectList && projectList.map((project: IProjectProps) => (
+                <CardProject project={project} fetchProject={fetchProject} />
+                ))}
+            </tbody>
+          </table>
+        </ContainerDiv>
+      </Content>
     </Container>
   );
 }

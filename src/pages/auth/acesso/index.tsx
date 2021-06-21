@@ -8,6 +8,7 @@ import { AuthDefaultBackground } from '../../../components/auth/bg'
 import { useHistory } from 'react-router-dom'
 import { api } from '../../../services/api'
 import { useLoader } from '../../../hooks/LoaderProvider'
+import { SecondaryButton } from '../../../components/SecondaryButton'
 
 
 const initialData = {}
@@ -88,12 +89,13 @@ export default function FirstAcess() {
     <AuthDefaultBackground>
       <Img><img src="./man.png" alt="imagem"></img></Img>
       <ContainerForm>
-        <Title>Insira seu E-mail</Title>
+        <h2>
+        Insira seu E-mail
+        </h2>
         <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
           <Input placeholder="E-mail" type="email" name="email" />
 
-          <Button type="submit">Entrar
-              </Button>
+          <SecondaryButton type="submit" label="Entrar" />
         </Form>
       </ContainerForm>
 

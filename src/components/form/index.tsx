@@ -70,13 +70,13 @@ export function FormMember(props: any) {
               title: `Usuário editado com sucesso`
             })
             handleReloadMemberList()
+            handleCloseModal()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
-            handleCloseModal()
 
           })
       } else {
@@ -88,13 +88,13 @@ export function FormMember(props: any) {
               icon: 'success',
               title: `Usuário adicionado com sucesso`
             })
+            handleCloseModal()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
-            handleCloseModal()
           })
       }
 
@@ -116,12 +116,8 @@ export function FormMember(props: any) {
     }
   }
 
-  async function fetchPerfil() {
-    handleReloadProfileList()
-  }
-
   useEffect(() => {
-    fetchPerfil()
+    handleReloadProfileList()
   }, [])
 
   return (

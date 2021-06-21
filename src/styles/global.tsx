@@ -7,8 +7,8 @@ export default createGlobalStyle`
         --background-ligth: #34B6B4;
 
         --secondary-color: #E9E8E8;
-        --title-color: #7B7979;
-        --text-color: #BBBBBB;
+        --title-color: #555555;
+        --text-color: #7c7c7c;
     }
 
     * {
@@ -71,7 +71,8 @@ export default createGlobalStyle`
 
     /* mouse over link */
     a:hover {
-        color:#fff;
+        transition: 0.8s;
+        margin-left: 20px;
     }
 
     /* selected link */
