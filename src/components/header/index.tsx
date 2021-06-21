@@ -4,6 +4,7 @@ import { FiMenu, FiUser, FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
 import { useHistory } from 'react-router';
 import { useRouter } from '../../hooks/RouterProvider';
+import Swal from 'sweetalert2';
 
 interface IHeader {
   setRenderAside(data: any): void
@@ -13,15 +14,24 @@ export const Header = ({ setRenderAside }: IHeader) => {
   const history = useHistory()
   const { headerTitle } = useRouter()
 
-  const { data: { user }, logout } = useAuth()
+  const { data: { user }, clearUserData } = useAuth()
 
   const handleLogout = useCallback(() => {
-    const confirmLogout = logout()
-    if (confirmLogout) {
-      setTimeout(() => {
-        history.push('/login')
-      },200)
-    }
+    Swal.fire({
+      title: 'Deseja realmente sair da plataforma?',
+      showCancelButton: true,
+      confirmButtonText: `Sim`,
+      confirmButtonColor: '#008080',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        history.push('/')
+
+        clearUserData()
+      }
+    })
+
+
   }, [])
 
   const handleToggleAside = useCallback(() => {

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 interface AuthContextData {
   login(data: ILoginDTO): void;
-  logout(): boolean;
+  clearUserData(): void;
   data: IAuthState;
 }
 
@@ -74,27 +74,12 @@ const AuthProvider: React.FC = ({ children }) => {
     }
   },[children])
 
-  const logout = useCallback(() => {
-
-    Swal.fire({
-      title: 'Deseja realmente sair da plataforma?',
-      showCancelButton: true,
-      confirmButtonText: `Sim`,
-      confirmButtonColor: '#008080',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        
-        localStorage.removeItem('@GP:user')
-        localStorage.removeItem('@GP:token')
-        localStorage.removeItem('@GP:profile')
-
-        setData({} as IAuthState)
-        return true
-      }
-    })
-
-    return false;
+  const clearUserData = useCallback(() => {
+    console.log("REMOVE DATA")
+    localStorage.removeItem('@GP:user')
+    localStorage.removeItem('@GP:token')
+    localStorage.removeItem('@GP:profile')
+    setData({} as IAuthState)
   },[data])
 
   const login = useCallback( async ({ email, password }: ILoginDTO) => {
@@ -133,7 +118,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [history, toggleLoading]);
 
   return (
-    <AuthProviderContext.Provider value={{ login, data, logout }}>
+    <AuthProviderContext.Provider value={{ login, data, clearUserData }}>
       {children}
     </AuthProviderContext.Provider>
   );
