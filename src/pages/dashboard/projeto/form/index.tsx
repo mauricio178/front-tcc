@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Container, ContainerForm, ContainerHeader, Button } from './styled'
+import { Container, DivButton, DivForm, Title } from './styled'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
 import { useHistory, useLocation } from 'react-router-dom';
 import { api } from '../../../../services/api'
 import { useLoader } from '../../../../hooks/LoaderProvider';
 import Input from '../../../../components/input';
-import { Form } from '@unform/web';
 import Select from '../../../../components/select';
+import { useFormModal } from '../../../../hooks/FormModalProvider';
+import { useGlobalData } from '../../../../hooks/GlobalDataProvider';
+import { Toast } from '../../../../hooks/AuthProvider';
+import { SecondaryButton } from '../../../../components/SecondaryButton';
 
 interface IMemberProps {
   name: string;
@@ -18,15 +21,14 @@ interface IFormRefInterface extends FormHandles, React.MutableRefObject<null> {
 }
 
 interface ILocation {
-  projeto: {
+  project: {
     name: string,
-    descricao: string;
-    vendedor: string;
-    pos_venda: string;
-    custo: string;
-    prev_inicio: string;
-    prev_fim: string;
-    cliente: string;
+    description: string;
+    seller_id: string;
+    post_seller_id: string;
+    cost: string;
+    prediction_start: string;
+    prediction_end: string;
 
   }
 }
@@ -41,35 +43,29 @@ interface IAxiosError {
 }
 
 
-export default function FormProjeto(props: any) {
+export default function FormProject(props: any) {
+
+  const { handleReloadProjectList, handleReloadProfileList, profileList, memberList } = useGlobalData()
+  const { data: formData, handleCloseModal } = useFormModal()
 
   const formRef = useRef<IFormRefInterface>({} as IFormRefInterface);
+  const edit = !!formData
 
   const history = useHistory()
 
-  const [initialData, setInicialData] = useState({})
-
-  const [edit, setEdit] = useState(false)
-
-  const location = useLocation()
 
   const { toggleLoading } = useLoader()
-
-  const [memberList, setMemberList] = useState([]);
-
-  useEffect(() => {
-    if (location.state) {
-      let { projeto } = location.state as ILocation
-      setInicialData(projeto)
-      setEdit(true)
-    }
-  }, [])
-
 
   async function handleSubmit(data: any,) {
     try {
       const schema = Yup.object().shape({
-
+        description: Yup.string().required('Email é um campo obrigatório'),
+        name: Yup.string().required('Nome é um campo obrigatório'),
+        seller_id: Yup.string().required('Vendedor Obrigatório'),
+        post_seller_id: Yup.string(),
+        cost: Yup.string().required('Custo obrigatório'),
+        prediction_start: Yup.string().required('Digite a previsão de Inicio'),
+        prediction_end: Yup.string().required('Digite a previsão de Fim'),
       });
 
       await schema.validate(data, {
@@ -79,105 +75,103 @@ export default function FormProjeto(props: any) {
       toggleLoading()
 
       if (edit) {
-        api.put("/", data)
+        api.put("project", data)
           .then(res => {
             console.log(res)
-            handleGoToDashboard()
+            Toast.fire({
+              icon: 'success',
+              title: `Projeto editado com sucesso`
+            })
+            handleReloadProjectList()
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
+            handleCloseModal()
+
           })
       } else {
-        api.post("/", data)
+        api.post("project", data)
           .then(res => {
             console.log(res)
-            handleGoToDashboard()
+            handleReloadProjectList()
+            Toast.fire({
+              icon: 'success',
+              title: `Projeto adicionado com sucesso`
+            })
           })
           .catch((err: IAxiosError) => {
             const { message } = err.response.data
             alert(message)
           }).finally(() => {
             toggleLoading()
+            handleCloseModal()
           })
       }
 
+    } catch (error) {
 
+      console.log(error.message)
 
-    } catch (err) {
-
-      console.log(err.message)
-
-      if (err instanceof Yup.ValidationError) {
+      if (error instanceof Yup.ValidationError) {
         let errorMessages = {}
 
-        err.inner.forEach(error => errorMessages = {
+        error.inner.forEach(err => errorMessages = {
           ...errorMessages,
           [`${err.path}`]: err.message
         });
-        formRef.current.setErrors(errorMessages);
+
+        formRef.current?.setErrors(errorMessages)
       }
       console.log(data)
     }
   }
 
-  const handleGoToDashboard = useCallback(() => {
-    history.push('/dashboard')
-  }, [history])
-
-
-  async function fetchMembers() {
-    const { data } = await api.get('team')
-    setMemberList(data)
-    console.log(data)
+  async function fetchPerfil() {
+    handleReloadProfileList()
   }
 
   useEffect(() => {
-    fetchMembers()
+    fetchPerfil()
   }, [])
 
 
 
   return (
-    <Container>
-      <ContainerHeader>
+    <Container ref={formRef} initialData={formData} onSubmit={handleSubmit}>
+      <Title>
         <h2>Adicionar Novo Projeto</h2>
-      </ContainerHeader>
+      </Title>
+      <DivForm>
+        <div>
 
-      <ContainerForm>
-        <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit}>
-          <div>
-            <Input placeholder="Nome do Projeto" type="text" name="name" />
-            <Input placeholder="Previsão de Inicio" type="date" name="prev_inicio" />
-            <Input placeholder="Previsão de Fim" type="date" name="prev_fim" />
-            <Input placeholder="Custo Estimado" type="text" name="custo" />
+          <Input placeholder="Nome do Projeto" type="text" name="name" />
+          <Input placeholder="Previsão de Inicio" type="date" name="prediction_start" />
+          <Input placeholder="Previsão de Fim" type="date" name="prediction_end" />
+          <Input placeholder="Custo Estimado" type="text" name="cost" />
           </div>
           <div>
-            <label>Vendedor</label>
-            <Select name="member">
-              {memberList.map((member: IMemberProps) => (
-                <option value={member.name}>{member.name}</option>
-              ))}
-            </Select>
-            <label>Gerente</label>
-            <Select name="member">
-              {memberList.map((member: IMemberProps) => (
-                <option value={member.name}>{member.name}</option>
-              ))}
-            </Select>
-          </div>
-          <div>
-            <Input placeholder="Cliente" type="text" name="cliente" />
-            <Input placeholder="Nome" type="text" name="name" />
-            <Input placeholder="Pós-Venda" type="text" name="pos_venda" />
-            <Input placeholder="Descrição" type="text" name="descricao" />
-          </div>
+          <Select name="seller_id">
+          <option value={``}>Gerente/Responsável</option>
+            {memberList.map((member: IMemberProps) => (
+              <option value={member.name}>{member.name}</option>
+            ))}
+          </Select>
+          <Select name="post_seller_id">
+          <option value={``}>Vendedor</option>
+            {memberList.map((member: IMemberProps) => (
+              <option value={member.name}>{member.name}</option>
+            ))}
+          </Select>
+          <Input placeholder="Descrição" type="text" name="description" />
+        </div>
+      </DivForm>
 
-          <Button>Adicionar</Button>
-        </Form>
-      </ContainerForm>
+      <DivButton>
+        <SecondaryButton label="Adicionar" />
+      </DivButton>
     </Container>
   );
 }

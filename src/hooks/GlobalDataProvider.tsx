@@ -13,12 +13,28 @@ interface IProfileProps {
   description: string;
 }
 
+interface IProjectProps {
+  project: {
+    name: string,
+    descricao: string;
+    vendedor: string;
+    pos_venda: string;
+    custo: string;
+    prev_inicio: string;
+    prev_fim: string;
+    cliente: string;
+  }
+}
+
+
 
 interface GlobalDataContextData {
   memberList: IMemberProps[];
   handleReloadMemberList(): void;
   profileList: IProfileProps[];
   handleReloadProfileList(): void;
+  projectList: IProjectProps[];
+  handleReloadProjectList(): void;
 }
 
 export const GlobalDataProviderContext = createContext<GlobalDataContextData>(
@@ -28,6 +44,7 @@ export const GlobalDataProviderContext = createContext<GlobalDataContextData>(
 const GlobalDataProvider: React.FC = ({ children }) => {
   const [profileList, setProfileList] = useState([]);
   const [memberList, setMemberList] = useState<IMemberProps[]>([] as IMemberProps[]);
+  const [projectList, setProjectList] = useState<IProjectProps[]>([] as IProjectProps[]);
 
   const handleReloadMemberList = useCallback( async() => {
     const { data } = await api.get('team')
@@ -39,9 +56,21 @@ const GlobalDataProvider: React.FC = ({ children }) => {
     setProfileList(data)
   }, [memberList]);
 
+  const handleReloadProjectList = useCallback( async() => {
+    const { data } = await api.get('project')
+    setProjectList(data)   
+  }, [projectList]);
+
   return (
-    <GlobalDataProviderContext.Provider value={{ memberList, handleReloadMemberList, profileList, handleReloadProfileList }}>
+    <GlobalDataProviderContext.Provider value={{
+      memberList, handleReloadMemberList, 
+      profileList, handleReloadProfileList, 
+      projectList, handleReloadProjectList   
+      
+      }}>
+
       {children}
+      
     </GlobalDataProviderContext.Provider>
   );
 };
