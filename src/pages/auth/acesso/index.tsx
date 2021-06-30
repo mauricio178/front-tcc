@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Button, ContainerForm, Title, Img } from './styled'
+import { ContainerForm, Img } from './styled'
 import Input from '../../../components/input'
 import { FormHandles } from '@unform/core'
 import { AuthDefaultBackground } from '../../../components/auth/bg'
