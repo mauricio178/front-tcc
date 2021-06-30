@@ -1,6 +1,6 @@
-import React, { useCallback, useRef, } from 'react'
+import { useCallback, } from 'react'
 import { Container } from './styled'
-import { FiMenu, FiUser, FiLogOut } from 'react-icons/fi';
+import { FiUser, FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/AuthProvider'
 import { useHistory } from 'react-router';
 import { useRouter } from '../../hooks/RouterProvider';
@@ -13,7 +13,6 @@ interface IHeader {
 export const Header = ({ setRenderAside }: IHeader) => {
   const history = useHistory()
   const { headerTitle } = useRouter()
-
   const { data: { user }, clearUserData } = useAuth()
 
   const handleLogout = useCallback(() => {
@@ -26,14 +25,12 @@ export const Header = ({ setRenderAside }: IHeader) => {
     }).then((result) => {
       if (result.isConfirmed) {        
         history.push('/')
-
         clearUserData()
       }
     })
-
-
   }, [])
 
+  // TODO, Rever Aside
   const handleToggleAside = useCallback(() => {
     setRenderAside((prevData: boolean) => !prevData)
   }, [setRenderAside])
